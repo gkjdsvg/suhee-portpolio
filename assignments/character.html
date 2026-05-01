@@ -1,197 +1,222 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>주토피아 캐릭터 프로필</title>
-    <style>
-        body {
-            background-color: #f0f2f5;
-            font-family: 'Pretendard', -apple-system, sans-serif;
-            color: #333;
-            line-height: 1.8;
-            margin: 0;
-            padding: 20px;
-        }
+<html>
+    <head>
+        <title>닉 와일드 프로필</title>
+        <style>
+            body {
+                background: #f5f5f5;
+                font-family: sans-serif;
+                margin: 0;
+                padding: 20px;
+            }
 
-        .character-container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: #ffffff;
-            padding: 60px; /* 내부 여백 더 넓게 */
-            border-radius: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-        }
+            .character-container {
+                max-width: 900px;
+                margin: 50px auto;
+                background: #fff;
+                padding: 50px; /* 내부 여백 살짝 넓힘 */
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
 
-        /* 메인 프로필 (닉 와일드) */
-        .profile {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 60px; /* 다음 섹션과의 간격 */
-        }
+            /* 프로필 - 사진 왼쪽, 이름 오른쪽 정렬 */
+            .profile {
+                display: flex;
+                justify-content: space-between; 
+                align-items: center;
+                gap: 50px; /* 사진과 이름 사이 간격 넓힘 */
+                margin-bottom: 40px;
+            }
 
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #fff;
-            box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.15); /* 강조 그림자 */
-            image-rendering: -webkit-optimize-contrast; /* 깨짐 방지 */
-        }
+            .profile-img {
+                max-width: 180px; /* 적절한 크기로 고정 */
+                height: auto;
+                border-radius: 50%;
+                box-shadow: 15px 15px 20px rgba(0,0,0,0.2);
+                /* 화질 깨짐 방지 */
+                image-rendering: -webkit-optimize-contrast;
+            }
 
-        .profile-info {
-            text-align: right;
-        }
+            .profile-info {
+                text-align: right;
+            }
 
-        .profile-info h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-        }
+            .profile-info h1 {
+                margin-bottom: 10px;
+                font-size: 2.5rem;
+            }
 
-        /* 구분선 */
-        .divider {
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, #2ecc71, #f39c12);
-            border-radius: 10px;
-            margin: 40px 0; /* 선 위아래 간격 넓힘 */
-            opacity: 0.6;
-        }
+            .profile-info p {
+                margin: 5px 0;
+                color: #666;
+            }
 
-        /* 섹션 제목 */
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
+            /* 기존에 있던 태그 디자인 유지 */
+            .tag {
+                display: inline-block;
+                background: #e1f5fe;
+                color: #01579b;
+                padding: 4px 12px;
+                border-radius: 50px;
+                font-size: 0.9rem;
+                font-weight: bold;
+                margin-top: 10px;
+            }
 
-        /* 관계 카드 공통 스타일 (주디, 플래시, 핀닉) */
-        .relation-section {
-            margin-bottom: 100px; /* 각 캐릭터 세트 사이의 큰 간격 */
-        }
+            .divider {
+                width: 100%;
+                height: 2px;
+                background: #ddd;
+                margin: 15px 0 30px;
+            }
 
-        .relation-card {
-            display: flex;
-            align-items: center;
-            gap: 50px; /* 사진과 설명 사이 간격을 확 벌림 */
-            padding: 40px;
-            background: #f9f9f9;
-            border-radius: 25px;
-            margin-bottom: 40px; /* 카드와 하단 큰 이미지 사이 간격 */
-        }
+            section {
+                margin-top: 60px; /* 섹션 간 간격 넓힘 */
+            }
 
-        .relation-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 20px;
-            object-fit: cover;
-            box-shadow: 15px 15px 25px rgba(0,0,0,0.1); /* 강조 그림자 */
-            image-rendering: -webkit-optimize-contrast; /* 깨짐 방지 */
-            flex-shrink: 0; /* 사진 크기 유지 */
-        }
+            section h2 {
+                color: #333;
+            }
 
-        .relation-info a {
-            text-decoration: none;
-            color: inherit;
-        }
+            /* 관계 카드 디자인 유지 및 간격 조정 */
+            .relation {
+                display: flex;
+                align-items: center;
+                gap: 40px; /* 카드 안의 사진과 글자 사이 간격 넓힘 */
+                margin-bottom: 40px;
+                padding: 30px; /* 카드 내부 여백 넓힘 */
+                background: #f9f9f9;
+                border-radius: 15px;
+            }
 
-        .relation-info strong {
-            font-size: 1.5rem;
-            display: block;
-            margin-bottom: 15px;
-            color: #222;
-            transition: color 0.2s;
-        }
+            .relation-img {
+                width: 120px; 
+                height: 120px;
+                object-fit: cover;
+                border-radius: 50%;
+                box-shadow: 10px 10px 15px rgba(0,0,0,0.1);
+                image-rendering: -webkit-optimize-contrast;
+            }
 
-        .relation-info a:hover strong {
-            color: #f39c12;
-            text-decoration: underline;
-        }
+            .relation-info a {
+                text-decoration: none; /* 링크 밑줄 제거 */
+                color: inherit;
+            }
 
-        .relation-info p {
-            margin: 5px 0;
-            color: #666;
-            font-size: 1.1rem;
-        }
+            .relation-info strong {
+                display: block;
+                font-size: 1.3rem;
+                margin-bottom: 8px;
+                transition: color 0.2s;
+            }
 
-        /* 하단 큰 이미지 */
-        .big-img {
-            width: 100%;
-            height: auto;
-            border-radius: 25px;
-            box-shadow: 20px 20px 40px rgba(0,0,0,0.15); /* 강조 그림자 */
-            image-rendering: -webkit-optimize-contrast; /* 깨짐 방지 */
-        }
+            .relation-info a:hover strong {
+                color: #01579b; /* 호버 시 태그 색상과 맞춤 */
+            }
 
-        /* 모바일 대응 */
-        @media (max-width: 700px) {
-            .profile, .relation-card { flex-direction: column; text-align: center; }
-            .profile-info { text-align: center; }
-        }
-    </style>
-</head>
-<body>
+            .big-img {
+                width: 100%;
+                height: auto;
+                border-radius: 20px;
+                margin-top: 20px;
+                box-shadow: 15px 15px 25px rgba(0,0,0,0.15);
+                image-rendering: -webkit-optimize-contrast;
+            }
 
-    <div class="character-container">
+            /* 캐릭터 세트 사이의 간격을 위한 클래스 */
+            .relation-set {
+                margin-bottom: 100px; 
+            }
+        </style>
+    </head>
 
-        <div class="profile">
-            <img src="nick.jpg" alt="닉 와일드" class="profile-img">
-            <div class="profile-info">
-                <h1>닉 와일드</h1>
-                <p>종족: 붉은 여우</p>
-                <p>나이: 33세</p>
-                <p>주토피아 최초의 여우 경찰</p>
-            </div>
-        </div>
+    <body>
+        <div class="character-container">
 
-        <h2>인간 관계 (Allies)</h2>
-        <div class="divider"></div>
-
-        <div class="relation-section">
-            <div class="relation-card">
-                <img src="judy.jpg" alt="주디 홉스" class="relation-img">
-                <div class="relation-info">
-                    <a href="https://namu.wiki/w/%EC%A3%BC%EB%94%94%20%ED%99%89%EC%8A%A4" target="_blank">
-                        <strong>주디 홉스 (Judy Hopps)</strong>
-                    </a>
-                    <p>나이: 25세</p>
-                    <p>함께 사건을 해결하는 파트너.</p>
+            <div class="profile">
+                <img src="nick.jpg" class="profile-img">
+                <div class="profile-info">
+                    <h1>닉 와일드</h1>
+                    <p>성별: 남성</p>
+                    <p>나이: 33세 (주토피아 2 기준)</p>
+                    <span class="tag">주토피아 최초의 여우 경찰</span>
                 </div>
             </div>
-            <img src="judynick.jpg" alt="닉과 주디" class="big-img">
-        </div>
 
-        <div class="relation-section">
-            <div class="relation-card">
-                <img src="flash.jpg" alt="플래시" class="relation-img">
-                <div class="relation-info">
-                    <a href="https://namu.wiki/w/%ED%94%8C%EB%9E%98%EC%8B%9C%20%EC%8A%AC%EB%A1%9C%EC%8A%A4%EB%AA%A8%EC%96%B4" target="_blank">
-                        <strong>플래시 슬로스모어 (Flash)</strong>
-                    </a>
-                    <p>나이: 33세</p>
-                    <p>닉의 고교 동창이자 절친</p>
+            <section>
+                <h2>개요</h2>
+                <div class="divider"></div>
+                <p>주토피아 시리즈의 등장인물이다. 주디 홉스와 함께 시리즈의 양대 주인공이다. 종족은 붉은 여우.</p>
+            </section>
+
+            <section>
+                <h2>특징</h2>
+                <div class="divider"></div>
+                <p>주디가 '경찰로서의 자질이 충만하다'라고 보증할 정도로 작중에서 주디와 함께 투톱으로 지능이 우수한 캐릭터이다. 
+                    본인이 전직 사기꾼이었다보니 동업자들의 심리에 능숙한 점도 다소 영향이 있겠다만 
+                    작전 계획 능력이나 화술, 사전 준비는 물론 임기응변 실력도 탁월하다. 
+                    주디와는 다르게 주토피아 토박이 출신에다가 뒷세계 경험이 많아서 주토피아에 대한 사회 문화적 상식에 해박하고 
+                    인맥도 풍부한 편이라 유사 시에 플래시, 핀닉 등 경찰 이외 인력의 도움을 구하기도 한다.</p>
+            </section>
+
+            <section>
+                <h2>성격</h2>
+                <div class="divider"></div>
+                <p>매우 능글맞은 성격의 소유자이며 파트너인 주디보다 세속적이고 현실주의적인 면이 돋보인다. 
+                    어릴 적에 차별을 당한 트라우마 때문에 타인을 잘 믿지 않는 성격이지만 
+                    만난 지 얼마 되지도 않은 주디를 위해 경찰서장에게 항변하거나, 
+                    주디에게 진심으로 상처 받아 떠나갈 정도로 여린 면도 있다. 
+                    하지만 주디와의 모험을 겪으며 어릴 적의 정의감을 되살려 주토피아 최초의 여우 경찰이 된다.
+</p>
+            </section>
+
+            <section>
+                <h2>인간 관계</h2>
+                <div class="divider"></div>
+
+                <div class="relation-set">
+                    <div class="relation">
+                        <img src="judy.jpg" class="relation-img">
+                        <div class="relation-info">
+                            <a href="https://namu.wiki/w/%EC%A3%BC%EB%94%94%20%ED%99%89%EC%8A%A4" target="_blank">
+                                <strong>주디 홉스</strong>
+                            </a>
+                            <p>나이: 25세</p>
+                            <p>함께 사건을 해결하는 파트너</p>
+                        </div>
+                    </div>
+                    <img src="judynick.jpg" class="big-img">
                 </div>
-            </div>
-            <img src="nick_flash.jpg" alt="닉과 플래시" class="big-img">
-        </div>
 
-        <div class="relation-section">
-            <div class="relation-card">
-                <img src="finnick.jpg" alt="핀닉" class="relation-img">
-                <div class="relation-info">
-                    <a href="https://namu.wiki/w/%ED%95%80%EB%8B%89" target="_blank">
-                        <strong>핀닉 (Finnick)</strong>
-                    </a>
-                    <p>나이: 34세 이상 (추정)</p>
-                    <p>전직 동업자, 거친 반전 목소리의 사막여우</p>
+                <div class="relation-set">
+                    <div class="relation">
+                        <img src="flash.jpg" class="relation-img">
+                        <div class="relation-info">
+                            <a href="https://namu.wiki/w/%ED%94%8C%EB%9E%98%EC%8B%9C%20%EC%8A%AC%EB%A1%9C%EC%8A%A4%EB%AA%A8%EC%96%B4" target="_blank">
+                                <strong>플래시 슬로스모어</strong>
+                            </a>
+                            <p>나이: 33세</p>
+                            <p>닉의 고교 동창이자 최고의 절친</p>
+                        </div>
+                    </div>
+                    <img src="nick,flash.jpg" class="big-img">
                 </div>
-            </div>
-            <img src="nick_finnick.jpg" alt="닉과 핀닉" class="big-img">
+
+                <div class="relation-set">
+                    <div class="relation">
+                        <img src="finnick.jpg" class="relation-img">
+                        <div class="relation-info">
+                            <a href="https://namu.wiki/w/%ED%95%80%EB%8B%89" target="_blank">
+                                <strong>핀닉</strong>
+                            </a>
+                            <p>나이: 34세 이상 (추정)</p>
+                            <p>사기꾼 시절부터 함께한 닉의 동업자</p>
+                        </div>
+                    </div>
+                    <img src="nick,finnick.jpg" class="big-img">
+                </div>
+
+            </section>
         </div>
-
-    </div>
-
-</body>
+    </body>
 </html>
