@@ -1,229 +1,311 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>책 소개하기</title>
-    <style>
-        /* 기본 스타일 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>책 소개하기</title>
+        <style>
+            /* 기본 스타일 */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        body {
-            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
-            background-color: #f8f8f8; /* 옅은 회색 배경 */
-            color: #333;
-            line-height: 1.7;
-            word-break: keep-all;
-        }
+            body {
+                font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+                background-color: #f8f8f8; /* 옅은 회색 배경 */
+                color: #333;
+                line-height: 1.7;
+                word-break: keep-all;
+            }
 
-        /* 헤더: 깔끔한 화이트/그레이 톤 */
-        header {
-            height: 35vh;
-            background-color: #ffffff;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+            /* 헤더: 깔끔한 화이트/그레이 톤 */
+            header {
+                height: 35vh;
+                background-color: #ffffff;
+                border-bottom: 1px solid #eee;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
 
-        .main-title {
-            font-size: 3rem;
-            color: #222;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
+            .main-title {
+                font-size: 3rem;
+                color: #222;
+                margin-bottom: 10px;
+                font-weight: 800;
+            }
 
-        .author {
-            font-size: 1.1rem;
-            letter-spacing: 5px;
-            color: #e60000; /* 포인트 컬러만 레드 */
-            font-weight: bold;
-        }
+            .author {
+                font-size: 1.1rem;
+                letter-spacing: 5px;
+                color: #e60000; /* 포인트 컬러만 레드 */
+                font-weight: bold;
+            }
 
-        /* 메인 컨테이너 */
-        .container {
-            max-width: 1000px;
-            margin: 50px auto 100px;
-            padding: 60px;
-            background: #ffffff;
-            border-radius: 30px; /* 모서리 둥글게 */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 컨테이너는 연한 그림자 */
-        }
+            /* 메인 컨테이너 */
+            .container {
+                max-width: 1000px;
+                margin: 50px auto 100px;
+                padding: 60px;
+                background: #ffffff;
+                border-radius: 30px; /* 모서리 둥글게 */
+                box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 컨테이너는 연한 그림자 */
+            }
 
-        section {
-            margin-bottom: 60px;
-        }
+            section {
+                margin-bottom: 60px;
+            }
 
-        h2 {
-            font-size: 1.6rem;
-            color: #222;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+            h2 {
+                font-size: 1.6rem;
+                color: #222;
+                margin-bottom: 30px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
 
-        h2::before {
-            content: '';
-            display: inline-block;
-            width: 5px;
-            height: 25px;
-            background: #e60000;
-            border-radius: 10px;
-        }
+            h2::before {
+                content: '';
+                display: inline-block;
+                width: 5px;
+                height: 25px;
+                background: #e60000;
+                border-radius: 10px;
+            }
 
-        /* 책 소개 레이아웃 */
-        .intro-container {
-            display: flex;
-            gap: 50px;
-            align-items: flex-start;
-        }
+            /* 책 소개 레이아웃 */
+            .intro-container {
+                display: flex;
+                gap: 50px;
+                align-items: flex-start;
+            }
 
-        /* 책 이미지 강조 (요청하신 부분) */
-        .book-cover-wrapper {
-            flex: 0 0 280px;
-        }
+            /* 책 이미지 강조 (요청하신 부분) */
+            .book-cover-wrapper {
+                flex: 0 0 280px;
+            }
 
-        .book-cover {
-            width: 100%;
-            height: auto;
-            border-radius: 15px; /* 이미지 모서리 둥글게 */
-            display: block;
-            
-            /* 핵심: 오른쪽 하단에 확실한 회색 그림자 강조 */
-            box-shadow: 20px 20px 30px rgba(180, 180, 180, 0.8); 
-        }
+            .book-cover {
+                width: 100%;
+                height: auto;
+                border-radius: 15px; /* 이미지 모서리 둥글게 */
+                display: block;
+                
+                /* 핵심: 오른쪽 하단에 확실한 회색 그림자 강조 */
+                box-shadow: 20px 20px 30px rgba(180, 180, 180, 0.8); 
+            }
 
-        .intro-text {
-            flex: 1;
-            font-size: 1.1rem;
-            color: #555;
-            padding-top: 10px;
-        }
+            .intro-text {
+                flex: 1;
+                font-size: 1.1rem;
+                color: #555;
+                padding-top: 10px;
+            }
 
-        .intro-text strong {
-            color: #000;
-            font-size: 1.3rem;
-            display: block;
-            margin-bottom: 15px;
-        }
+            .intro-text strong {
+                color: #000;
+                font-size: 1.3rem;
+                display: block;
+                margin-bottom: 15px;
+            }
 
-        /* 목차 영역 */
-        .contents-card {
+            /* 목차 영역 */
+            .contents-card {
+                background: #fdfdfd;
+                padding: 30px;
+                border-radius: 20px;
+                border: 1px solid #efefef;
+            }
+
+            .contents-list {
+                list-style: none;
+            }
+
+            .contents-list li {
+                display: flex;
+                justify-content: space-between;
+                padding: 18px 15px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .contents-list li:last-child {
+                border-bottom: none;
+            }
+
+            .page-num {
+                color: #999;
+                font-weight: 500;
+            }
+
+            /* 버튼 디자인 (파일명으로 연결 가능하게 세팅) */
+            .buy-btn {
+                display: block;
+                width: fit-content;
+                margin: 40px auto 0;
+                padding: 20px 60px;
+                background: #222;
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 1.1rem;
+                border-radius: 50px;
+                transition: all 0.3s;
+            }
+
+            .buy-btn:hover {
+                background: #e60000;
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
+            }
+
+            footer {
+                text-align: center;
+                padding: 40px 0 80px;
+                color: #bbb;
+                font-size: 0.9rem;
+            }
+
+            /* 반응형 */
+            @media (max-width: 850px) {
+                .intro-container { flex-direction: column; align-items: center; text-align: center; }
+                .container { margin: 20px; padding: 30px; }
+                .book-cover-wrapper { width: 200px; margin-bottom: 30px; }
+            }
+
+            .review-card {
             background: #fdfdfd;
             padding: 30px;
             border-radius: 20px;
-            border: 1px solid #efefef;
-        }
-
-        .contents-list {
-            list-style: none;
-        }
-
-        .contents-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 18px 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .contents-list li:last-child {
-            border-bottom: none;
-        }
-
-        .page-num {
-            color: #999;
-            font-weight: 500;
-        }
-
-        /* 버튼 디자인 (파일명으로 연결 가능하게 세팅) */
-        .buy-btn {
-            display: block;
-            width: fit-content;
-            margin: 40px auto 0;
-            padding: 20px 60px;
-            background: #222;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            transition: all 0.3s;
-        }
-
-        .buy-btn:hover {
-            background: #e60000;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
-        }
-
-        footer {
+            border: 1px solid #eee;
             text-align: center;
-            padding: 40px 0 80px;
-            color: #bbb;
-            font-size: 0.9rem;
         }
 
-        /* 반응형 */
-        @media (max-width: 850px) {
-            .intro-container { flex-direction: column; align-items: center; text-align: center; }
-            .container { margin: 20px; padding: 30px; }
-            .book-cover-wrapper { width: 200px; margin-bottom: 30px; }
-        }
-    </style>
-</head>
-<body>
+            /* 별점 */
+            .star-rating {
+                direction: rtl;
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
 
-    <header>
-        <h1 class="main-title">종의 기원</h1>
-        <p class="author">정유정 소설</p>
-    </header>
+            .star-rating input {
+                display: none;
+            }
 
-    <div class="container">
-        <section>
-            <h2>책 소개</h2>
-            <div class="intro-container">
-                <div class="book-cover-wrapper">
-                    <img src="book.jpg" alt="종의 기원 표지" class="book-cover">
+            .star-rating label {
+                color: #ddd;
+                cursor: pointer;
+            }
+
+            .star-rating input:checked ~ label {
+                color: #e60000;
+            }
+
+            .star-rating label:hover,
+            .star-rating label:hover ~ label {
+                color: #e60000;
+            }
+
+            /* 텍스트 영역 */
+            textarea {
+                width: 100%;
+                height: 120px;
+                padding: 15px;
+                border-radius: 10px;
+                border: 1px solid #ddd;
+                resize: none;
+                margin-bottom: 20px;
+                font-family: inherit;
+            }
+
+            /* 버튼 */
+            .submit-btn {
+                padding: 12px 30px;
+                background: #222;
+                color: #fff;
+                border: none;
+                border-radius: 30px;
+                cursor: pointer;
+            }
+
+            .submit-btn:hover {
+                background: #e60000;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <h1 class="main-title">종의 기원</h1>
+            <p class="author">정유정 소설</p>
+        </header>
+
+        <div class="container">
+            <section>
+                <h2>책 소개</h2>
+                <div class="intro-container">
+                    <div class="book-cover-wrapper">
+                        <img src="book.jpg" alt="종의 기원 표지" class="book-cover">
+                    </div>
+                    <div class="intro-text">
+                        <strong>"내 안의 포식자가 눈을 떴다."</strong>
+                        <p>
+                            한유진은 피 냄새에 잠에서 깬다. 발작이 시작되기 전이었다. 며칠간 '약'을 끊은 상태였고, 약을 끊자 기운이 넘쳤고, '개병'이 도져 외출을 했다. <br><br>
+                            발작을 기다리며 누워있을 때, 죽은 형을 대신하고 있는 해진에게서 전화가 걸려온다. 어머니와 연락이 닿지 않는다는 말을 듣고 뭔가 잘못되었음을 감지하는 유진. <br><br>
+                            피투성이인 방 안과, 마찬가지로 피범벅이 된 자신의 모습을, 끔찍하게 살해된 어머니의 시신을 보게 된다.
+                        </p>
+                    </div>
                 </div>
-                <div class="intro-text">
-                    <strong>"내 안의 포식자가 눈을 떴다."</strong>
-                    <p>
-                        한유진은 피 냄새에 잠에서 깬다. 발작이 시작되기 전이었다. 며칠간 '약'을 끊은 상태였고, 약을 끊자 기운이 넘쳤고, '개병'이 도져 외출을 했다. <br><br>
-                        발작을 기다리며 누워있을 때, 죽은 형을 대신하고 있는 해진에게서 전화가 걸려온다. 어머니와 연락이 닿지 않는다는 말을 듣고 뭔가 잘못되었음을 감지하는 유진. <br><br>
-                        피투성이인 방 안과, 마찬가지로 피범벅이 된 자신의 모습을, 끔찍하게 살해된 어머니의 시신을 보게 된다.
-                    </p>
+            </section>
+
+            <section>
+                <h2>목차</h2>
+                <div class="contents-card">
+                    <ul class="contents-list">
+                        <li><span>프롤로그</span> <span class="page-num">7</span></li>
+                        <li><span>1부 어둠 속의 부름</span> <span class="page-num">13</span></li>
+                        <li><span>2부 나는 누구일까</span> <span class="page-num">101</span></li>
+                        <li><span>3부 포식자</span> <span class="page-num">219</span></li>
+                        <li><span>4부 종의 기원</span> <span class="page-num">289</span></li>
+                        <li><span>에필로그</span> <span class="page-num">373</span></li>
+                        <li><span>작가의 말</span> <span class="page-num">379</span></li>
+                    </ul>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section>
-            <h2>목차</h2>
-            <div class="contents-card">
-                <ul class="contents-list">
-                    <li><span>프롤로그</span> <span class="page-num">7</span></li>
-                    <li><span>1부 어둠 속의 부름</span> <span class="page-num">13</span></li>
-                    <li><span>2부 나는 누구일까</span> <span class="page-num">101</span></li>
-                    <li><span>3부 포식자</span> <span class="page-num">219</span></li>
-                    <li><span>4부 종의 기원</span> <span class="page-num">289</span></li>
-                    <li><span>에필로그</span> <span class="page-num">373</span></li>
-                    <li><span>작가의 말</span> <span class="page-num">379</span></li>
-                </ul>
-            </div>
-        </section>
+            <!-- 기존 목차 section 아래에 추가 -->
+            <section>
+                <h2>평점 및 감상</h2>
 
-        <a href="https://product.kyobobook.co.kr/detail/S000000828491" class="buy-btn">지금 바로 구매하기</a>
-    </div>
+                <div class="review-card">
+                    <!-- 별점 -->
+                    <div class="star-rating">
+                        <input type="radio" name="rating" id="star5"><label for="star5">★</label>
+                        <input type="radio" name="rating" id="star4"><label for="star4">★</label>
+                        <input type="radio" name="rating" id="star3"><label for="star3">★</label>
+                        <input type="radio" name="rating" id="star2"><label for="star2">★</label>
+                        <input type="radio" name="rating" id="star1"><label for="star1">★</label>
+                    </div>
 
-    <footer>
-        &copy; 2024 Jeong You-jeong. All rights reserved.
-    </footer>
+                    <!-- 느낀 점 -->
+                    <textarea placeholder="느낀 점을 작성하세요..."></textarea>
 
-</body>
-</html>
+                    <button class="submit-btn">등록</button>
+                </div>
+            </section>
+
+            <a href="https://product.kyobobook.co.kr/detail/S000000828491" class="buy-btn">지금 바로 구매하기</a>
+
+            
+        </div>
+
+        <footer>
+            &copy; 2024 Jeong You-jeong. All rights reserved.
+        </footer>
+
+    </body>
+    </html>
