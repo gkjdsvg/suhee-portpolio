@@ -22,13 +22,13 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.05);
         }
 
-        /* 상단 프로필 섹션 */
+        /* 상단 프로필 섹션 (수정: 사진과 이름 간격 대폭 확대) */
         .profile {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 80px;
-            margin-bottom: 80px;
+            gap: 100px; /* 50px -> 100px로 대폭 늘림 */
+            margin-bottom: 100px; /* 하단과의 간격도 조금 더 확보 */
         }
 
         .profile-img {
@@ -43,30 +43,32 @@
 
         .profile-info {
             text-align: left;
+            /* 이름 쪽이 너무 휑해 보이지 않게 최소 너비 설정 */
+            min-width: 250px; 
         }
 
         .profile-info h1 {
             font-size: 2.5rem;
             color: #2c3e50;
-            margin: 0 0 10px 0;
+            margin: 0 0 15px 0;
             letter-spacing: -1px;
         }
 
         .profile-info p {
             font-size: 1.1rem;
             color: #666;
-            margin: 5px 0;
+            margin: 8px 0; /* 줄 간격도 아주 살짝 넓힘 */
         }
 
         .tag {
             display: inline-block;
             background: #e1f5fe;
             color: #01579b;
-            padding: 4px 12px;
+            padding: 5px 15px;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         /* 구분선 */
@@ -99,15 +101,15 @@
 
         /* 인간관계 섹션 간격 */
         .relation-set {
-            margin-bottom: 100px;
+            margin-bottom: 120px; /* 세트 사이 간격 추가 확보 */
         }
 
         .relation {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 30px; /* 관계 카드 내부 간격도 살짝 조정 */
             margin-top: 25px;
-            padding: 25px;
+            padding: 30px;
             background: #f9f9f9;
             border-radius: 20px;
             transition: transform 0.3s ease;
@@ -128,10 +130,10 @@
         }
 
         .relation-info strong {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #333;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .relation-info a {
@@ -143,10 +145,9 @@
             color: #f39c12;
         }
 
-        /* 큰 이미지 및 캡션 스타일 */
         .big-img-wrapper {
-            margin-top: 30px;
-            text-align: center; /* 캡션 중앙 정렬 */
+            margin-top: 35px;
+            text-align: center;
         }
 
         .big-img {
@@ -158,15 +159,19 @@
 
         .img-caption {
             display: block;
-            margin-top: 15px;
+            margin-top: 18px;
             font-size: 0.95rem;
             color: #888;
-            font-style: italic; /* 캡션은 이탤릭체로 구분 */
+            font-style: italic;
         }
 
-        @media (max-width: 600px) {
-            .profile { flex-direction: column; text-align: center; }
-            .profile-info { text-align: center; }
+        @media (max-width: 700px) {
+            .profile { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 30px; /* 모바일은 너무 멀면 이상하니까 적당히 */
+            }
+            .profile-info { text-align: center; min-width: auto; }
             .relation { flex-direction: column; text-align: center; }
         }
     </style>
