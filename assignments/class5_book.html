@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>책 소개하기</title>
     <style>
-        /* 기본 스타일 초기화 */
+        /* 기본 스타일 */
         * {
             margin: 0;
             padding: 0;
@@ -14,17 +14,17 @@
 
         body {
             font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
-            background-color: #1a1a1a; /* 배경을 약간 더 밝게 하여 회색 그림자가 보이도록 수정 */
-            color: #d1d1d1;
+            background-color: #f8f8f8; /* 옅은 회색 배경 */
+            color: #333;
             line-height: 1.7;
             word-break: keep-all;
         }
 
-        /* 헤더 스타일 */
+        /* 헤더: 깔끔한 화이트/그레이 톤 */
         header {
-            height: 45vh;
-            background: linear-gradient(rgba(0,0,0,0.85), #1a1a1a), 
-                        url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=1000') center/cover;
+            height: 35vh;
+            background-color: #ffffff;
+            border-bottom: 1px solid #eee;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -33,28 +33,27 @@
         }
 
         .main-title {
-            font-size: 3.5rem;
-            color: #e60000;
-            margin-bottom: 5px;
+            font-size: 3rem;
+            color: #222;
+            margin-bottom: 10px;
             font-weight: 800;
         }
 
         .author {
-            font-size: 1.2rem;
-            letter-spacing: 8px;
-            color: #888;
-            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 5px;
+            color: #e60000; /* 포인트 컬러만 레드 */
+            font-weight: bold;
         }
 
         /* 메인 컨테이너 */
         .container {
-            max-width: 950px;
-            margin: -80px auto 100px;
+            max-width: 1000px;
+            margin: 50px auto 100px;
             padding: 60px;
-            background: #222222; /* 컨테이너 배경도 약간 조정 */
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.05);
-            /* 컨테이너 자체의 깊은 그림자는 삭제 */
+            background: #ffffff;
+            border-radius: 30px; /* 모서리 둥글게 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 컨테이너는 연한 그림자 */
         }
 
         section {
@@ -63,18 +62,18 @@
 
         h2 {
             font-size: 1.6rem;
-            color: #fff;
+            color: #222;
             margin-bottom: 30px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         h2::before {
             content: '';
             display: inline-block;
-            width: 6px;
-            height: 24px;
+            width: 5px;
+            height: 25px;
             background: #e60000;
             border-radius: 10px;
         }
@@ -82,41 +81,45 @@
         /* 책 소개 레이아웃 */
         .intro-container {
             display: flex;
-            gap: 45px;
-            align-items: center;
+            gap: 50px;
+            align-items: flex-start;
         }
 
-        /* 이미지 강조 스타일 */
+        /* 책 이미지 강조 (요청하신 부분) */
         .book-cover-wrapper {
             flex: 0 0 280px;
-            position: relative;
         }
 
         .book-cover {
             width: 100%;
             height: auto;
-            border-radius: 20px; /* 모서리 둥글게 유지 */
+            border-radius: 15px; /* 이미지 모서리 둥글게 */
             display: block;
             
-            /* 핵심 수정: 오른쪽 하단에만 짙은 회색 그림자 */
-            /* offset-x, offset-y, blur-radius, color */
-            box-shadow: 15px 15px 25px rgba(50, 50, 50, 0.9); 
-            
-            /* 호버 효과 등 다른 강조 효과는 삭제 */
+            /* 핵심: 오른쪽 하단에 확실한 회색 그림자 강조 */
+            box-shadow: 20px 20px 30px rgba(180, 180, 180, 0.8); 
         }
 
         .intro-text {
             flex: 1;
-            font-size: 1.15rem;
-            color: #aaa;
-            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #555;
+            padding-top: 10px;
         }
 
-        /* 목차 디자인 */
+        .intro-text strong {
+            color: #000;
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* 목차 영역 */
         .contents-card {
-            background: #2a2a2a;
+            background: #fdfdfd;
             padding: 30px;
             border-radius: 20px;
+            border: 1px solid #efefef;
         }
 
         .contents-list {
@@ -126,8 +129,8 @@
         .contents-list li {
             display: flex;
             justify-content: space-between;
-            padding: 15px 10px;
-            border-bottom: 1px solid #3a3a3a;
+            padding: 18px 15px;
+            border-bottom: 1px solid #eee;
         }
 
         .contents-list li:last-child {
@@ -135,56 +138,43 @@
         }
 
         .page-num {
-            color: #666;
-            font-weight: bold;
+            color: #999;
+            font-weight: 500;
         }
 
-        /* 버튼 디자인 */
+        /* 버튼 디자인 (파일명으로 연결 가능하게 세팅) */
         .buy-btn {
             display: block;
             width: fit-content;
             margin: 40px auto 0;
-            padding: 18px 50px;
-            background: #e60000;
+            padding: 20px 60px;
+            background: #222;
             color: #fff;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1rem;
             border-radius: 50px;
-            transition: 0.3s;
+            transition: all 0.3s;
         }
 
         .buy-btn:hover {
-            background: #ff1a1a;
+            background: #e60000;
             transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
         }
 
         footer {
             text-align: center;
-            padding-bottom: 60px;
-            color: #555;
+            padding: 40px 0 80px;
+            color: #bbb;
             font-size: 0.9rem;
         }
 
-        /* 모바일 대응 */
+        /* 반응형 */
         @media (max-width: 850px) {
-            .intro-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .container {
-                margin: 0 20px 50px;
-                padding: 40px 25px;
-            }
-            .book-cover-wrapper {
-                flex: 0 0 auto;
-                width: 220px;
-                margin-bottom: 30px;
-            }
-            .book-cover {
-                /* 모바일에서도 그림자 효과 유지 */
-                box-shadow: 10px 10px 20px rgba(50, 50, 50, 0.9);
-            }
+            .intro-container { flex-direction: column; align-items: center; text-align: center; }
+            .container { margin: 20px; padding: 30px; }
+            .book-cover-wrapper { width: 200px; margin-bottom: 30px; }
         }
     </style>
 </head>
@@ -192,7 +182,7 @@
 
     <header>
         <h1 class="main-title">종의 기원</h1>
-        <p class="author">Jeong You-jeong</p>
+        <p class="author">정유정 소설</p>
     </header>
 
     <div class="container">
@@ -203,10 +193,11 @@
                     <img src="/종의 기원.jpg" alt="종의 기원 표지" class="book-cover">
                 </div>
                 <div class="intro-text">
+                    <strong>"내 안의 포식자가 눈을 떴다."</strong>
                     <p>
-                        <strong>"피 냄새가 잠에서 나를 깨웠다."</strong><br><br>
-                        한유진은 침대에서 일어나는 순간, 인생이 송두리째 뒤바뀌었음을 직감한다. 발작이 휩쓸고 간 자리에 남은 것은 기억의 공백과 온 방안을 뒤덮은 선혈, 그리고 차갑게 식어버린 어머니의 시신이었다.<br><br>
-                        악의 기원을 추적하는 정유정 작가의 압도적인 서스펜스. 평범한 청년의 내면에서 깨어나는 '포식자'의 본능을 치밀하게 그려낸 수작입니다.
+                        한유진은 피 냄새에 잠에서 깬다. 발작이 시작되기 전이었다. 며칠간 '약'을 끊은 상태였고, 약을 끊자 기운이 넘쳤고, '개병'이 도져 외출을 했다. <br><br>
+                        발작을 기다리며 누워있을 때, 죽은 형을 대신하고 있는 해진에게서 전화가 걸려온다. 어머니와 연락이 닿지 않는다는 말을 듣고 뭔가 잘못되었음을 감지하는 유진. <br><br>
+                        피투성이인 방 안과, 마찬가지로 피범벅이 된 자신의 모습을, 끔찍하게 살해된 어머니의 시신을 보게 된다.
                     </p>
                 </div>
             </div>
@@ -227,11 +218,11 @@
             </div>
         </section>
 
-        <a href="https://product.kyobobook.co.kr/detail/S000000828491" target="_blank" class="buy-btn">도서 상세 정보 보기</a>
+        <a href="order.html" class="buy-btn">지금 바로 구매하기</a>
     </div>
 
     <footer>
-        &copy; 2024 The Origin of Species Showcase
+        &copy; 2024 Jeong You-jeong. All rights reserved.
     </footer>
 
 </body>
