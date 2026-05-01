@@ -1,147 +1,226 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <style>
-            body {
-            background: #f5f5f5;
-            font-family: sans-serif;
-            }
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캐릭터 프로필 - 닉 와일드</title>
+    <style>
+        /* 기본 배경 및 폰트 설정 */
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            color: #333;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
 
-            .character-container {
-                max-width: 900px;
-                margin: 50px auto;
-                background: #fff;
-                padding: 40px;
-                border-radius: 20px;
-            }
+        /* 메인 컨테이너 */
+        .character-container {
+            max-width: 850px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 30px;
+            /* 컨테이너 전체에 부드러운 그림자 */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
 
-            /* 프로필 */
-            .profile {
-                display: flex;
-                align-items: center;
-                gap: 30px;
-            }
+        /* 상단 프로필 섹션 */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
 
-            .profile-img {
-                width: 150px;
-                height: 150px;
-                border-radius: 50%;
-                object-fit: cover;
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fff;
+            /* 요청하신 오른쪽 아래 강조 그림자 */
+            box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.15);
+        }
 
-                /* 오른쪽 아래 그림자 */
-                box-shadow: 15px 15px 20px rgba(0,0,0,0.2);
-            }
+        .profile-info h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
 
-            .profile-info h1 {
-                margin-bottom: 10px;
-            }
+        .profile-info p {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 5px 0;
+        }
 
-            /* 구분선 */
-            .divider {
-                width: 100%;
-                height: 2px;
-                background: #ddd;
-                margin: 10px 0 20px;
-            }
+        .tag {
+            display: inline-block;
+            background: #e1f5fe;
+            color: #01579b;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
 
-            /* 섹션 */
-            section {
-                margin-top: 40px;
-            }
+        /* 구분선 디자인 */
+        .divider {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #2ecc71, #f39c12); /* 닉의 컬러감: 초록 & 주황 */
+            border-radius: 10px;
+            margin: 15px 0 25px;
+            opacity: 0.7;
+        }
 
-            /* 관계 */
-            .relation {
-                display: flex;
-                align-items: center;
-                gap: 20px;
-                margin-bottom: 30px;
-            }
+        /* 섹션 제목 및 텍스트 */
+        section {
+            margin-top: 50px;
+        }
 
-            .relation-img {
-                width: 100px;
-                border-radius: 15px;
-            }
+        h2 {
+            font-size: 1.6rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-            /* 큰 이미지 */
-            .big-img {
-                width: 100%;
-                border-radius: 20px;
-                margin-top: 20px;
-            }
-        </style>
-    </head>
+        h2::before {
+            content: '•';
+            color: #f39c12;
+            font-size: 2rem;
+        }
 
-    <body>
-        <div class="character-container">
+        p {
+            font-size: 1.05rem;
+            color: #444;
+            text-align: justify;
+        }
 
-            <!-- 상단 프로필 -->
-            <div class="profile">
-                <img src="nick.jpg" class="profile-img">
+        /* 인간관계(주디) 카드 디자인 */
+        .relation {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-top: 25px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
 
-                <div class="profile-info">
-                    <h1>닉 와일드</h1>
-                    <p>성별: 남성</p>
-                    <p>나이: 2편 기준 33세</p>
+        .relation:hover {
+            transform: translateY(-5px);
+            background: #fff8f0; /* 주디 이미지와 어울리는 배경 */
+        }
+
+        .relation-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 15px;
+            object-fit: cover;
+            /* 관계 이미지에도 오른쪽 아래 그림자 */
+            box-shadow: 10px 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .relation-info strong {
+            font-size: 1.2rem;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .relation-info p {
+            font-size: 0.95rem;
+            color: #777;
+            margin: 0;
+        }
+
+        /* 하단 큰 이미지 강조 */
+        .big-img-wrapper {
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .big-img {
+            width: 100%;
+            height: auto;
+            border-radius: 25px;
+            /* 큰 이미지에도 확실한 오른쪽 아래 그림자 */
+            box-shadow: 20px 20px 40px rgba(0,0,0,0.12);
+        }
+
+        /* 반응형 설정 */
+        @media (max-width: 600px) {
+            .profile { flex-direction: column; text-align: center; }
+            .character-container { padding: 30px 20px; }
+            .relation { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="character-container">
+
+        <div class="profile">
+            <img src="nick.jpg" alt="닉 와일드" class="profile-img">
+            <div class="profile-info">
+                <h1>닉 와일드 <small>(Nick Wilde)</small></h1>
+                <p><strong>종족:</strong> 붉은 여우</p>
+                <p><strong>나이:</strong> 33세 (주토피아 2 기준)</p>
+                <span class="tag">주토피아 최초의 여우 경찰</span>
+            </div>
+        </div>
+
+        <section>
+            <h2>개요</h2>
+            <div class="divider"></div>
+            <p>
+                디즈니 애니메이션 <strong>주토피아</strong> 시리즈의 남주인공. 주디 홉스와 함께 시리즈를 이끄는 양대 주인공이며, 능글맞은 매력과 반전 있는 과거사로 전 세계적인 인기를 얻은 캐릭터입니다.
+            </p>
+        </section>
+
+        <section>
+            <h2>특징</h2>
+            <div class="divider"></div>
+            <p>
+                작중 최고 수준의 지능캐입니다. 전직 사기꾼 출신답게 화술이 뛰어나며, 인맥이 굉장히 넓습니다. 주토피아 구석구석을 잘 알고 있어 경찰인 주디에게 실질적인 단서를 제공하는 해결사 역할을 합니다. 특히 위기 상황에서의 임기응변은 타의 추종을 불허합니다.
+            </p>
+        </section>
+
+        <section>
+            <h2>성격</h2>
+            <div class="divider"></div>
+            <p>
+                겉으로는 매사에 여유롭고 비꼬는 듯한 태도를 보이지만, 사실은 누구보다 속이 깊고 따뜻한 '츤데레' 스타일입니다. 어린 시절 여우라는 이유로 차별받았던 상처 때문에 세상에 냉소적이었으나, 주디를 만나며 진정한 정의감과 꿈을 되찾게 됩니다.
+            </p>
+        </section>
+
+        <section>
+            <h2>인간 관계</h2>
+            <div class="divider"></div>
+
+            <div class="relation">
+                <img src="judy.jpg" alt="주디 홉스" class="relation-img">
+                <div class="relation-info">
+                    <strong>주디 홉스 (Judy Hopps)</strong>
+                    <p>나이: 25세 | 직업: 경찰</p>
+                    <p>서로의 부족한 점을 채워주는 최고의 파트너이자 소중한 친구.</p>
                 </div>
             </div>
 
-            <!-- 개요 -->
-            <section>
-                <h2>개요</h2>
-                <div class="divider"></div>
-                <p>
-                    주토피아 시리즈의 등장인물이다. 주디 홉스와 함께 시리즈의 양대 주인공이다.
-                    종족은 붉은 여우.
-                </p>
-            </section>
+            <div class="big-img-wrapper">
+                <img src="judynick.jpg" alt="닉과 주디" class="big-img">
+            </div>
+        </section>
 
-            <!-- 특징 -->
-            <section>
-                <h2>특징</h2>
-                <div class="divider"></div>
-                <p>
-                    주디가 '경찰로서의 자질이 충만하다'라고 보증할 정도로 작중에서 주디와 함께 투톱으로 지능이 우수한 캐릭터이다. 
-                    본인이 전직 사기꾼이었다보니 동업자들의 심리에 능숙한 점도 다소 영향이 있겠다만 
-                    작전 계획 능력이나 화술, 사전 준비는 물론 임기응변 실력도 탁월하다. 
-                    주디와는 다르게 주토피아 토박이 출신에다가 뒷세계 경험이 많아서 
-                    주토피아에 대한 사회 문화적 상식에 해박하고 인맥도 풍부한 편이라 
-                    유사 시에 플래시, 핀닉 등 경찰 이외 인력의 도움을 구하기도 한다.
-                </p>
-            </section>
+    </div>
 
-            <!-- 성격 -->
-            <section>
-                <h2>성격</h2>
-                <div class="divider"></div>
-                <p>
-                   매우 능글맞은 성격의 소유자이며 파트너인 주디보다 세속적이고 현실주의적인 면이 돋보인다. 
-                   어릴 적에 차별을 당한 트라우마 때문에 타인을 잘 믿지 않는 성격이지만 
-                   만난 지 얼마 되지도 않은 주디를 위해 경찰서장에게 항변하거나, 
-                   주디에게 진심으로 상처 받아 떠나갈 정도로 여린 면도 있다. 
-                   하지만 주디와의 모험을 겪으며 어릴 적의 정의감을 되살려 주토피아 최초의 여우 경찰이 된다.
-
-                </p>
-            </section>
-
-            <!-- 인간관계 -->
-            <section>
-                <h2>인간 관계</h2>
-                <div class="divider"></div>
-
-                <div class="relation">
-                    <img src="judy.jpg" class="relation-img">
-
-                    <div>
-                        <strong>주디 홉스</strong>
-                        <p>나이: 2편 기준 25세</p>
-                        <p>함께 사건을 해결하는 파트너</p>
-                    </div>
-                </div>
-
-                <!-- 큰 이미지 -->
-                <img src="judynick.jpg" class="big-img">
-            </section>
-
-        </div>
-    </body>
+</body>
 </html>
