@@ -14,31 +14,30 @@
                 max-width: 900px;
                 margin: 50px auto;
                 background: #fff;
-                padding: 50px; /* 내부 여백 살짝 넓힘 */
+                padding: 40px;
                 border-radius: 20px;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             }
 
-            /* 프로필 - 사진 왼쪽, 이름 오른쪽 정렬 */
+            /* 프로필 */
             .profile {
                 display: flex;
-                justify-content: space-between; 
                 align-items: center;
-                gap: 50px; /* 사진과 이름 사이 간격 넓힘 */
-                margin-bottom: 40px;
+                gap: 30px;
             }
 
+            /* CSS에서 프로필 이미지가 너무 커서 감당 안 될 때를 대비해 최대 너비만 설정 */
             .profile-img {
-                max-width: 180px; /* 적절한 크기로 고정 */
+                /* width, height 속성은 지웠으니 삭제합니다. */
+                /* object-fit도 원본 그대로 보여줄 거면 필요 없습니다. */
+                
+                /* 원본이 너무 크면 화면 뚫고 나가니까, 부모 컨테이너 너비까지만 커지게 안전장치 */
+                max-width: 100%; 
                 height: auto;
-                border-radius: 50%;
-                box-shadow: 15px 15px 20px rgba(0,0,0,0.2);
-                /* 화질 깨짐 방지 */
-                image-rendering: -webkit-optimize-contrast;
-            }
 
-            .profile-info {
-                text-align: right;
+                border-radius: 50%;
+                /* 오른쪽 아래 그림자 */
+                box-shadow: 15px 15px 20px rgba(0,0,0,0.2);
             }
 
             .profile-info h1 {
@@ -51,81 +50,55 @@
                 color: #666;
             }
 
-            /* 기존에 있던 태그 디자인 유지 */
-            .tag {
-                display: inline-block;
-                background: #e1f5fe;
-                color: #01579b;
-                padding: 4px 12px;
-                border-radius: 50px;
-                font-size: 0.9rem;
-                font-weight: bold;
-                margin-top: 10px;
-            }
-
+            /* 구분선 */
             .divider {
                 width: 100%;
                 height: 2px;
                 background: #ddd;
-                margin: 15px 0 30px;
+                margin: 10px 0 20px;
             }
 
+            /* 섹션 */
             section {
-                margin-top: 60px; /* 섹션 간 간격 넓힘 */
+                margin-top: 40px;
             }
 
             section h2 {
                 color: #333;
             }
 
-            /* 관계 카드 디자인 유지 및 간격 조정 */
+            /* 관계 */
             .relation {
                 display: flex;
                 align-items: center;
-                gap: 40px; /* 카드 안의 사진과 글자 사이 간격 넓힘 */
-                margin-bottom: 40px;
-                padding: 30px; /* 카드 내부 여백 넓힘 */
+                gap: 20px;
+                margin-bottom: 30px;
+                padding: 20px;
                 background: #f9f9f9;
                 border-radius: 15px;
             }
 
             .relation-img {
-                width: 120px; 
-                height: 120px;
-                object-fit: cover;
-                border-radius: 50%;
-                box-shadow: 10px 10px 15px rgba(0,0,0,0.1);
-                image-rendering: -webkit-optimize-contrast;
-            }
-
-            .relation-info a {
-                text-decoration: none; /* 링크 밑줄 제거 */
-                color: inherit;
+                /* 관계 이미지도 width 속성을 지웠으므로 CSS에서 크기를 제어합니다. */
+                width: 100px; /* 원하는 크기 지정 */
+                height: 100px; /* 정사각형 유지 */
+                object-fit: cover; /* 원본 비율 유지하며 카드에 맞춤 */
+                border-radius: 50%; /* 둥글게 */
             }
 
             .relation-info strong {
                 display: block;
-                font-size: 1.3rem;
-                margin-bottom: 8px;
-                transition: color 0.2s;
+                font-size: 1.2rem;
+                margin-bottom: 5px;
             }
 
-            .relation-info a:hover strong {
-                color: #01579b; /* 호버 시 태그 색상과 맞춤 */
-            }
-
+            /* 큰 이미지 */
             .big-img {
-                width: 100%;
-                height: auto;
+                width: 100%; /* 부모 너비에 맞춤 */
+                height: auto; /* 비율 유지 */
                 border-radius: 20px;
                 margin-top: 20px;
-                box-shadow: 15px 15px 25px rgba(0,0,0,0.15);
-                image-rendering: -webkit-optimize-contrast;
-            }
-
-            /* 캐릭터 세트 사이의 간격을 위한 클래스 */
-            .relation-set {
-                margin-bottom: 100px; 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             }
         </style>
     </head>
