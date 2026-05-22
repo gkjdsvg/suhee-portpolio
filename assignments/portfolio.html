@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 포트폴리오</title>
+    <title>반응형 포트폴리오</title>
     <style>
         /* --- 1. 초기화 및 기본 스타일 --- */
         * {
@@ -12,28 +12,28 @@
             box-sizing: border-box;
         }
         html {
-            scroll-behavior: smooth; /* 메뉴 클릭 시 부드럽게 이동 */
+            scroll-behavior: smooth;
             font-family: 'Malgun Gothic', sans-serif;
         }
         body {
             background-color: #f8f9fa;
             color: #333;
-            overflow-x: hidden;
+            overflow-x: hidden; /* 가로 스크롤바 절대 방지 */
         }
 
-        /* --- 2. 레이아웃 핵심 (가로 1920px 고정 및 중앙 정렬) --- */
+        /* --- 2. 반응형 레이아웃 핵심 (최대 1920px, 유연한 축소) --- */
         .container {
-            width: 1920px;
+            width: 100%;
+            max-width: 1920px; /* 최대 크기는 1920px로 제한 */
             margin: 0 auto;
             background-color: #ffffff;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
 
-        /* 섹션 공통 스타일 (구분을 위해 높이를 크게 잡음) */
+        /* 섹션 공통 */
         section {
             width: 100%;
-            min-height: 100vh; /* 화면을 가득 채우는 높이 */
-            padding: 100px 80px;
+            min-height: 100vh;
+            padding: 120px 10% 80px 10%; /* 좌우 여백을 %로 주어 화면 크기에 따라 자동 조절 */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -42,10 +42,10 @@
         }
 
         h2 {
-            font-size: 3rem;
+            font-size: calc(2rem + 1vw); /* 화면 크기에 따라 글자 크기 유연하게 조절 */
             margin-bottom: 50px;
             color: #222;
-            position: relative;
+            text-align: center;
         }
         h2::after {
             content: '';
@@ -56,9 +56,10 @@
             margin: 15px auto 0 auto;
         }
 
-        /* --- 3. 상단 내비게이션 바 --- */
+        /* --- 3. 상단 내비게이션 바 (반응형) --- */
         header {
-            width: 1920px;
+            width: 100%;
+            max-width: 1920px;
             position: fixed;
             top: 0;
             left: 50%;
@@ -68,20 +69,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 80px;
+            padding: 20px 5%;
             z-index: 1000;
             border-bottom: 1px solid #ddd;
         }
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #3498db;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
         }
         nav a {
             text-decoration: none;
             color: #555;
-            font-size: 1.1rem;
-            margin-left: 40px;
+            font-size: 1rem;
             font-weight: 600;
             transition: color 0.3s;
         }
@@ -89,7 +93,7 @@
             color: #3498db;
         }
 
-        /* --- 4. 섹션별 스타일 --- */
+        /* --- 4. 섹션별 반응형 스타일 --- */
         /* Home 섹션 */
         #home {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -97,34 +101,36 @@
             text-align: center;
         }
         #home h1 {
-            font-size: 4.5rem;
+            font-size: calc(2.5rem + 2vw); /* 큰 화면에선 크게, 작은 화면에선 작게 */
             margin-bottom: 20px;
         }
         #home p {
-            font-size: 1.5rem;
+            font-size: calc(1rem + 0.5vw);
             opacity: 0.9;
         }
 
         /* About 섹션 */
         .about-content {
-            display: flex;
-            gap: 80px;
-            max-width: 1200px;
-        }
-        .about-text {
+            max-width: 1000px;
+            width: 100%;
             font-size: 1.2rem;
             line-height: 1.8;
         }
+        .about-text p {
+            margin-bottom: 15px;
+        }
 
-        /* Projects 섹션 */
+        /* Projects 섹션 (Flex-wrap으로 화면 작아지면 아래로 떨어지게 설정) */
         .project-grid {
             display: flex;
-            gap: 40px;
-            max-width: 1400px;
+            flex-wrap: wrap; /* 자리가 부족하면 다음 줄로 자동 줄바꿈 */
+            gap: 30px;
+            max-width: 1200px;
             width: 100%;
+            justify-content: center;
         }
         .project-card {
-            flex: 1;
+            flex: 1 1 300px; /* 최소 300px 보장, 남는 공간은 균등 분할 */
             background: #fdfdfd;
             border: 1px solid #e0e0e0;
             border-radius: 10px;
@@ -135,33 +141,53 @@
             transform: translateY(-10px);
         }
         .project-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
+            color: #333;
         }
 
         /* Contact 섹션 */
+        #contact {
+            text-align: center;
+        }
         #contact p {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
         }
         .email-btn {
+            display: inline-block;
             padding: 15px 40px;
             background-color: #3498db;
             color: #fff;
             text-decoration: none;
             border-radius: 30px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
+            transition: background 0.3s;
+        }
+        .email-btn:hover {
+            background-color: #2980b9;
         }
 
         /* 푸터 */
         footer {
             width: 100%;
-            padding: 40px;
+            padding: 30px;
             text-align: center;
             background-color: #222;
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- 5. 모바일 환경 최종 방어 (미디어 쿼리) --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+            }
+            .logo { font-size: 1.2rem; }
+            nav { gap: 10px; }
+            nav a { font-size: 0.9rem; }
+            section { padding: 80px 5% 50px 5%; }
         }
     </style>
 </head>
@@ -181,73 +207,9 @@
         <main>
             <section id="home">
                 <h1>안녕하세요, 홍길동입니다.</h1>
-                <p>끊임없이 성장하는 프론트엔드 개발자/디자이너입니다.</p>
+                <p>끊임없이 성장하는 프론트엔드 개발자입니다.</p>
             </section>
 
             <section id="about">
                 <h2>ABOUT ME</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p><strong>이름:</strong> 홍길동</p>
-                        <p><strong>연락처:</strong> 010-1234-5678</p>
-                        <p><strong>이메일:</strong> email@example.com</p>
-                        <p style="margin-top: 20px;">9차시, 10차시 수업 내용을 기반으로 제작된 포트폴리오 웹사이트입니다. 배운 기술을 활용하여 웹 표준을 준수하고 가로 1920px 레이아웃에 맞춰 컴포넌트를 배치했습니다.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="projects">
-                <h2>PROJECTS</h2>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <h3>📁 프로젝트 제목 1</h3>
-                        <p>프로젝트에 대한 간단한 설명입니다. 어떤 기술을 사용했는지, 본인의 역할이 무엇이었는지 작성하세요.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>📁 프로젝트 제목 2</h3>
-                        <p>프로젝트에 대한 간단한 설명입니다. 어떤 기술을 사용했는지, 본인의 역할이 무엇이었는지 작성하세요.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>📁 프로젝트 제목 3</h3>
-                        <p>프로젝트에 대한 간단한 설명입니다. 어떤 기술을 사용했는지, 본인의 역할이 무엇이었는지 작성하세요.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact">
-                <h2>CONTACT</h2>
-                <p>저와 함께 멋진 프로젝트를 만들어보지 않겠습니까?</p>
-                <a href="mailto:email@example.com" class="email-btn">이메일 보내기</a>
-            </section>
-        </main>
-
-        <footer>
-            <p>Copyright &copy; 2026 홍길동. All rights reserved.</p>
-        </footer>
-    </div>
-
-    <script>
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                // 현재 스크롤 위치가 섹션 범위 내에 있는지 확인 (헤더 높이 80px 감안)
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                <div
