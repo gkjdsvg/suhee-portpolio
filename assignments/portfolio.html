@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Portfolio - Book Archive</title>
+    <title>Modern Portfolio - Book Detail Archive</title>
     <style>
         /* --- 1. 초기화 및 폰트 설정 --- */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Noto+Sans+KR:wght@300;400;700&display=swap');
@@ -35,21 +35,22 @@
         section {
             width: 100%;
             min-height: 100vh;
-            padding: 140px 10% 100px 10%;
+            padding: 140px 15% 100px 15%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             border-bottom: 1px solid #f0f0f0;
         }
 
+        /* 큰 섹션 제목 */
         h2 {
-            font-size: calc(1.8rem + 1vw);
+            font-size: calc(2rem + 1vw);
             font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             margin-bottom: 60px;
             color: #111;
-            border-left: 4px solid #111;
+            border-left: 5px solid #111;
             padding-left: 20px;
         }
 
@@ -77,12 +78,12 @@
         }
         nav {
             display: flex;
-            gap: 40px;
+            gap: 30px;
         }
         nav a {
             text-decoration: none;
             color: #999999;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -93,13 +94,11 @@
             font-weight: 700;
         }
 
-        /* --- 4. 섹션별 모던 스타일 디자인 --- */
+        /* --- 4. 섹션별 스타일 디자인 --- */
         /* Home 섹션 */
         #home {
             background-color: #111111;
             color: #ffffff;
-            text-align: left;
-            align-items: flex-start;
         }
         #home h1 {
             font-size: calc(2.5rem + 2vw);
@@ -119,7 +118,6 @@
             max-width: 800px;
             font-size: 1.1rem;
             line-height: 2;
-            font-weight: 400;
             color: #444;
         }
         .about-content strong {
@@ -129,60 +127,80 @@
             width: 100px;
         }
 
-        /* --- 📚 Books 섹션 리뉴얼 (한 줄에 한 권씩 길게 소개) --- */
-        .book-list {
-            display: flex;
-            flex-direction: column;
-            gap: 80px; /* 책과 책 사이 간격 */
+        /* --- 📚 책 상세 풀어쓰기 섹션 (여기가 핵심) --- */
+        .book-section {
+            background-color: #ffffff;
+            justify-content: flex-start;
+            padding-top: 160px;
+        }
+        /* 짝수 번째 책 섹션은 배경을 연하게 주어 지루함 방지 */
+        .book-section:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .book-container {
+            max-width: 1100px;
             width: 100%;
-            max-width: 1200px;
         }
-        .book-item {
-            border-bottom: 1px dashed #ddd;
-            padding-bottom: 60px;
-        }
-        .book-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        .book-meta {
-            font-size: 0.9rem;
+        .book-no {
+            font-size: 1rem;
             font-weight: 700;
             color: #999;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
         }
-        .book-item h3 {
-            font-size: calc(1.3rem + 0.5vw);
+        .book-title {
+            font-size: calc(1.6rem + 0.8vw);
             font-weight: 700;
             color: #111;
-            margin-bottom: 25px;
+            margin-bottom: 40px;
+            line-height: 1.3;
         }
-        .book-review {
-            color: #444;
-            font-size: 1.05rem;
-            line-height: 1.9;
+        
+        /* 상세 본문 텍스트 */
+        .book-body {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #333;
             font-weight: 400;
         }
-        /* 책 내용 중 강조하고 싶은 문장 스타일 */
-        .book-quote {
-            display: block;
-            margin-top: 20px;
-            padding-left: 15px;
-            border-left: 3px solid #ccc;
-            color: #777;
+        .book-sub-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 40px 0 15px 0;
+            color: #111;
+            display: flex;
+            align-items: center;
+        }
+        .book-sub-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #111;
+            margin-right: 12px;
+        }
+
+        /* 모던한 인용구 상자 */
+        .book-blockquote {
+            margin: 40px 0;
+            padding: 30px;
+            background-color: #f1f1f1;
+            border-left: 4px solid #111;
             font-style: italic;
+            color: #444;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .book-section:nth-child(even) .book-blockquote {
+            background-color: #e9e9e9;
         }
 
         /* Contact 섹션 */
-        #contact {
-            align-items: flex-start;
-        }
         #contact p {
             font-size: 1.5rem;
             font-weight: 300;
             margin-bottom: 40px;
-            color: #333;
         }
         .email-btn {
             display: inline-block;
@@ -193,7 +211,6 @@
             font-size: 1rem;
             font-weight: 500;
             letter-spacing: 2px;
-            text-transform: uppercase;
             transition: all 0.3s;
         }
         .email-btn:hover {
@@ -208,14 +225,12 @@
             border-top: 1px solid #f0f0f0;
             font-size: 0.85rem;
             color: #999;
-            letter-spacing: 1px;
         }
 
         /* --- 5. 모바일 반응형 대응 --- */
         @media (max-width: 768px) {
-            header { padding: 20px 5%; }
-            nav { gap: 20px; }
-            section { padding: 100px 5% 60px 5%; }
+            header { padding: 20px 5%; nav { gap: 15px; } }
+            section { padding: 120px 8% 60px 8%; }
         }
     </style>
 </head>
@@ -223,11 +238,13 @@
 
     <div class="container">
         <header>
-            <div class="logo">ARCHIVE.</div>
+            <div class="logo">BOOK ARCHIVE.</div>
             <nav>
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#books" class="nav-link">Books</a>
+                <a href="#book01" class="nav-link">Brave New World</a>
+                <a href="#book02" class="nav-link">Animal Farm</a>
+                <a href="#book03" class="nav-link">L'Étranger</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
         </header>
@@ -235,7 +252,7 @@
         <main>
             <section id="home">
                 <h1>THINKING<br>& RECORDING.</h1>
-                <p>기록과 사유를 통해 성장하는 홍길동의 아카이브 사이트입니다.</p>
+                <p>텍스트를 통해 세상을 읽고 사유하는 홍길동의 원페이지 아카이브입니다.</p>
             </section>
 
             <section id="about">
@@ -245,49 +262,75 @@
                     <p><strong>CONTACT</strong> 010-1234-5678</p>
                     <p><strong>EMAIL</strong> suhee@example.com</p>
                     <p style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px;">
-                        단순히 기술을 습득하는 것을 넘어, 문학 속에 담긴 철학과 가치를 분석하는 것을 좋아합니다.<br>
-                        과거의 고전 문학들을 통해 현대 사회를 바라보는 주체적인 사유 방식을 기르고 있으며, 이를 웹 기술을 활용해 가로 1920px 해상도의 모던 원페이지 아카이브로 시각화했습니다.
+                        단순히 표면적인 기술을 습득하는 것을 넘어, 문학 속에 담긴 고유한 철학과 가치를 깊이 있게 분석하는 것을 선호합니다.<br>
+                        과거의 고전 문학들을 통해 현대 사회를 비판적으로 바라보는 주체적인 사유 방식을 기르고 있으며, 이를 웹 표준 마크업 기술을 활용해 가로 1920px 해상도의 완벽한 원페이지 상세 포트폴리오로 시각화했습니다. 아래 스크롤을 통해 제가 읽고 분석한 도서들의 상세 내역을 확인할 수 있습니다.
                     </p>
                 </div>
             </section>
 
-            <section id="books">
-                <h2>Books I Read</h2>
-                <div class="book-list">
+            <section id="book01" class="book-section">
+                <div class="book-container">
+                    <div class="book-no">BOOK ARCHIVE 01</div>
+                    <h3 class="book-title">멋진 신세계<br><span style="font-weight: 300; font-size: 0.7em; color: #666;">올더스 헉슬리 (Aldous Huxley)</span></h3>
                     
-                    <div class="book-item">
-                        <div class="book-meta">01 / DYSTOPIA</div>
-                        <h3>멋진 신세계 (Brave New World)</h3>
-                        <p class="book-review">
-                            올더스 헉슬리가 그려낸 과학 기술의 고도화와 인간 존엄성 상실에 대한 고찰입니다. 모든 인간이 공장에서 대량 생산되고, 감정이 통제되는 완벽한 사회 속에서 역설적으로 '인간다운 불행'을 택하는 주인공을 통해 참된 자유의 가치를 배웠습니다. 시스템이 주는 안락함에 길들여지지 않는 주체적인 삶의 태도가 왜 중요한지 생각해보게 되었습니다.
-                            <span class="book-quote">"하지만 난 안락함을 원치 않습니다. 나는 신을 원하고, 시를 원하고, 참된 위험을 원하고, 자유를 원하고, 선을 원합니다. 나는 죄를 원합니다."</span>
-                        </p>
-                    </div>
+                    <div class="book-body">
+                        <h4 class="book-sub-title">작품 줄거리 및 핵심 요약</h4>
+                        <p>이 작품은 과학 기술의 극단적인 발전이 가져온 디스토피아적 미래 사회를 배경으로 합니다. 모든 인간은 병 속에서 대량 생산되며, 태어날 때부터 계급이 결정되고, 감정과 고통을 통제하는 알약인 '소마(Soma)'를 통해 강제적인 행복을 주입받습니다. 이 완벽하고 안정된 시스템 속에 던져진 야만인 '존'은 고통과 노화, 슬픔이 부재한 삶이 얼마나 기만적인지를 깨닫고 시스템에 균열을 내기 시작합니다.</p>
+                        
+                        <div class="book-blockquote">
+                            "하지만 난 안락함을 원치 않습니다. 나는 신을 원하고, 시를 원하고, 참된 위험을 원하고, 자유를 원하고, 선을 원합니다. 나는 죄를 원합니다." <br>
+                            - 본문 중에서, 시스템이 주는 가짜 행복을 거부하는 야만인 '존'의 대사
+                        </div>
 
-                    <div class="book-item">
-                        <div class="book-meta">02 / ALLEGORY</div>
-                        <h3>동물농장 (Animal Farm)</h3>
-                        <p class="book-review">
-                            조지 오웰의 날카로운 우화를 통해 권력의 부패와 변질되는 이상향을 목격했습니다. 혁명을 통해 평등한 사회를 꿈꿨던 동물들이 결국 또 다른 독재 시스템을 만들어가는 과정은 소름 돋을 정도로 현실적이었습니다. 이 책을 통해 조직이나 사회 구조를 무비판적으로 수용하지 않고, 항상 깨어있는 시각으로 감시해야 한다는 교훈을 얻었습니다.
-                            <span class="book-quote">"모든 동물은 평등하다. 그러나 어떤 동물들은 다른 동물들보다 더욱 평등하다."</span>
-                        </p>
+                        <h4 class="book-sub-title">나의 사유 및 인문학적 고찰</h4>
+                        <p>헉슬리가 경고한 미래는 오늘날 고도화된 알고리즘과 물질만능주의에 중독된 현대 사회와 소름 돋을 정도로 닮아 있습니다. 고통을 회피하기 위해 약물과 오락에 의존하는 세계 정부의 시민들을 보며, 진정한 인간다움이란 단순히 고통이 없는 상태가 아니라 슬픔과 시련 속에서도 스스로 사유하고 선택할 수 있는 '자유 의지'에 있음을 깨달았습니다. 편리함이라는 덫에 갇혀 인간의 고유성을 잃지 않아야겠다는 다짐을 하게 만든 작품입니다.</p>
                     </div>
+                </div>
+            </section>
 
-                    <div class="book-item">
-                        <div class="book-meta">03 / ABSURDITY</div>
-                        <h3>이방인 (L'Étranger)</h3>
-                        <p class="book-review">
-                            알베르 카뮈가 던지는 인간 존재의 부조리와 현실에 대한 묵직한 메시지입니다. 세상의 위선적인 관습과 도덕적 잣대에 맞추어 거짓 눈물을 흘리기보다, 끝까지 진실만을 말하며 죽음을 맞이하는 뫼르소의 모습에서 강렬한 인상을 받았습니다. 타인의 시선에 휘둘리지 않고 내 삶의 주권을 온전히 지키는 법에 대해 깊이 고찰한 계기가 되었습니다.
-                            <span class="book-quote">"오늘 엄마가 죽었다. 아니, 어쩌면 어제였는지도 모른다."</span>
-                        </p>
+            <section id="book02" class="book-section">
+                <div class="book-container">
+                    <div class="book-no">BOOK ARCHIVE 02</div>
+                    <h3 class="book-title">동물농장<br><span style="font-weight: 300; font-size: 0.7em; color: #666;">조지 오웰 (George Orwell)</span></h3>
+                    
+                    <div class="book-body">
+                        <h4 class="book-sub-title">작품 줄거리 및 핵심 요약</h4>
+                        <p>인간 주인의 착취에 맞서 혁명을 일으킨 메이너 농장의 동물들은 자신들만의 평등한 유토피아인 '동물농장'을 건설합니다. 그러나 혁명을 주도했던 돼지 계급의 '나폴레옹'은 점차 권력의 맛을 보며 타락하기 시작합니다. 그들은 동물들을 기만하고 규칙을 자신들에게 유리하게 교묘히 수정하며, 결국 쫓아냈던 인간들과 다를 바 없는 잔혹한 독재자로 변모해 갑니다.</p>
+                        
+                        <div class="book-blockquote">
+                            "모든 동물은 평등하다. 그러나 어떤 동물들은 다른 동물들보다 더욱 평등하다." <br>
+                            - 권력을 잡은 돼지들이 기존의 평등 원칙을 왜곡하여 벽에 새로 써 붙인 기만적인 슬로건
+                        </div>
+
+                        <h4 class="book-sub-title">나의 사유 및 인문학적 고찰</h4>
+                        <p>조지 오웰의 날카로운 우화는 비단 특정 정치 체제뿐만 아니라, 우리가 속한 모든 조직과 사회 시스템에 적용될 수 있는 경고장입니다. 절대 권력은 반드시 부패한다는 명제를 목격하며, 시스템의 구성원들이 눈을 감고 귀를 닫았을 때 지배 계층이 어떻게 언어를 조작하고 대중을 선동하는지 깊이 있게 분석할 수 있었습니다. 맹목적인 복종을 경계하고 항상 비판적인 시각으로 세상을 바라보는 지적 감시자가 되어야 함을 통감했습니다.</p>
                     </div>
+                </div>
+            </section>
 
+            <section id="book03" class="book-section">
+                <div class="book-container">
+                    <div class="book-no">BOOK ARCHIVE 03</div>
+                    <h3 class="book-title">이방인<br><span style="font-weight: 300; font-size: 0.7em; color: #666;">알베르 카뮈 (Albert Camus)</span></h3>
+                    
+                    <div class="book-body">
+                        <h4 class="book-sub-title">작품 줄거리 및 핵심 요약</h4>
+                        <p>주인공 뫼르소는 어머니의 장례식에서 눈물을 흘리지 않고, 이튿날 여자친구와 해수욕을 즐기는 등 사회적 관습과 감정의 규칙에 무관심한 인물입니다. 그는 알제리 해변에서 내리쬐는 '태양빛 때문'에 우발적으로 아랍인을 살해하게 됩니다. 재판 과정에서 법정은 살인 사건 자체보다 그가 어머니의 죽음 앞에 슬퍼하지 않았다는 '도덕적 결점'을 문제 삼아 그에게 사형을 선고합니다. 뫼르소는 끝까지 세상의 위선과 타협하지 않고 자신의 진실을 지키며 죽음을 받아들입니다.</p>
+                        
+                        <div class="book-blockquote">
+                            "오늘 엄마가 죽었다. 아니, 어쩌면 어제였는지도 모른다." <br>
+                            - 관습적인 슬픔의 강요를 거부하는 주인공 뫼르소의 시선을 대변하는 고전 문학 역사상 가장 유명한 첫 문장
+                        </div>
+
+                        <h4 class="book-sub-title">나의 사유 및 인문학적 고찰</h4>
+                        <p>카뮈가 제시한 '부조리'는 현대인들에게 큰 울림을 줍니다. 사회는 끊임없이 우리에게 '정해진 틀에 맞는 감정'과 '평범한 역할'을 요구하며, 여기서 벗어난 사람들을 이방인 취급합니다. 뫼르소의 무관심은 냉혹함이 아니라, 타인의 시선과 위선에 맞춰 거짓 행동을 하지 않겠다는 날 것 그대로의 진실성임을 깨달았습니다. 세상이 정해놓은 잣대에 무조건 맞추기보다, 내 삶의 본질과 주권을 스스로 정의하는 단단한 자아를 확립하게 해 준 작품입니다.</p>
+                    </div>
                 </div>
             </section>
 
             <section id="contact">
                 <h2>Connect</h2>
-                <p>책과 개발, 혹은 새로운 인사이트에 대한 대화는 언제든 환영합니다.</p>
+                <p>깊이 있는 사유와 텍스트 분석에 관한 대화는 언제든 환영합니다.</p>
                 <a href="mailto:suhee@example.com" class="email-btn">Send Message</a>
             </section>
         </main>
@@ -306,7 +349,8 @@
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= sectionTop - 200) {
+                // 스크롤 위치 보정
+                if (window.pageYOffset >= sectionTop - 250) {
                     current = section.getAttribute('id');
                 }
             });
@@ -317,7 +361,3 @@
                     link.classList.add('active');
                 }
             });
-        });
-    </script>
-</body>
-</html>
