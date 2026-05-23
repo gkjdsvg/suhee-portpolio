@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Portfolio - Book Archive</title>
+    <title>Modern Minimalist Portfolio</title>
     <style>
-        /* --- 1. 초기화 및 폰트 설정 --- */
+        /* --- 1. 초기화 및 폰트 설정 (모던의 핵심은 깖끔한 폰트) --- */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Noto+Sans+KR:wght@300;400;700&display=swap');
 
         * {
@@ -31,7 +31,7 @@
             margin: 0 auto;
         }
 
-        /* 섹션 공통 스타일 */
+        /* 섹션 공통 스타일 (미니멀) */
         section {
             width: 100%;
             min-height: 100vh;
@@ -42,6 +42,7 @@
             border-bottom: 1px solid #f0f0f0;
         }
 
+        /* 모던 스타일의 제목: 얇고 간결하게 */
         h2 {
             font-size: calc(1.8rem + 1vw);
             font-weight: 300;
@@ -94,7 +95,7 @@
         }
 
         /* --- 4. 섹션별 모던 스타일 디자인 --- */
-        /* Home 섹션 */
+        /* Home 섹션: 완전 딥한 블랙 배경으로 강렬하게 시작 */
         #home {
             background-color: #111111;
             color: #ffffff;
@@ -129,7 +130,7 @@
             width: 100px;
         }
 
-        /* Books 섹션 (기존 프로젝트 영역을 도서 아카이브로 변경) */
+        /* Projects 섹션: 무채색 카드 레이아웃 */
         .project-grid {
             display: flex;
             flex-wrap: wrap;
@@ -143,28 +144,21 @@
             padding: 40px;
             transition: all 0.4s ease;
         }
+        /* 마우스 올리면 선명한 블랙 테두리로 변경되는 모던 효과 */
         .project-card:hover {
             border-color: #111111;
             background-color: #fafafa;
         }
-        .project-card .book-num {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #999;
-            margin-bottom: 10px;
-            display: block;
-        }
         .project-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 20px;
             letter-spacing: -0.5px;
-            color: #111;
         }
         .project-card p {
-            color: #555;
+            color: #666;
             font-size: 0.95rem;
-            line-height: 1.8;
+            line-height: 1.6;
             font-weight: 300;
         }
 
@@ -178,6 +172,7 @@
             margin-bottom: 40px;
             color: #333;
         }
+        /* 심플한 블랙 사각형 버튼 */
         .email-btn {
             display: inline-block;
             padding: 18px 50px;
@@ -218,19 +213,19 @@
 
     <div class="container">
         <header>
-            <div class="logo">ARCHIVE.</div>
+            <div class="logo">PORTFOLIO.</div>
             <nav>
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#books" class="nav-link">Books</a>
+                <a href="#projects" class="nav-link">Projects</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
         </header>
 
         <main>
             <section id="home">
-                <h1>THINKING<br>& RECORDING.</h1>
-                <p>기록과 사유를 통해 성장하는 홍길동의 아카이브 사이트입니다.</p>
+                <h1>CREATIVE<br>FRONTEND DEVELOPER.</h1>
+                <p>디테일과 미니멀리즘을 지향하는 홍길동입니다.</p>
             </section>
 
             <section id="about">
@@ -240,37 +235,34 @@
                     <p><strong>CONTACT</strong> 010-1234-5678</p>
                     <p><strong>EMAIL</strong> suhee@example.com</p>
                     <p style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px;">
-                        단순히 코드를 짜거나 디자인을 하는 것을 넘어, 텍스트 속에 담긴 철학과 가치를 분석하는 것을 좋아합니다.<br>
-                        과거의 고전 문학들을 통해 현대 사회를 바라보는 시선을 기르고 있으며, 이러한 주체적인 사유 방식을 웹 기술을 활용해 가로 1920px 해상도의 모던 원페이지 아카이브로 시각화했습니다.
+                        불필요한 요소를 걷어내고 본질에 집중하는 디자인을 선호합니다. <br>
+                        9, 10차시 강의에서 다룬 시맨틱 마크업 기술을 기반으로, 모던 웹 트렌드에 맞춘 무채색 톤앤매너와 유연한 그리드 시스템을 적용해 가로 1920px 화면 해상도에 완벽하게 대응하도록 설계했습니다.
                     </p>
                 </div>
             </section>
 
-            <section id="books">
-                <h2>Books I Read</h2>
+            <section id="projects">
+                <h2>Selected Projects</h2>
                 <div class="project-grid">
                     <div class="project-card">
-                        <span class="book-num">BOOK 01</span>
-                        <h3>멋진 신세계 (Brave New World)</h3>
-                        <p>올더스 헉슬리가 그려낸 과학 기술의 고도화와 인간 존엄성 상실에 대한 디스토피아적 고찰. 시스템의 통제 속에서 인간의 진정한 자유와 행복이 무엇인지 깊게 고민하게 만든 작품입니다.</p>
+                        <h3>01 / WEB STANDARD PROJECT</h3>
+                        <p>웹 표준과 접근성을 준수하여 마크업한 미니멀리즘 스타일의 결과물입니다.</p>
                     </div>
                     <div class="project-card">
-                        <span class="book-num">BOOK 02</span>
-                        <h3>동물농장 (Animal Farm)</h3>
-                        <p>조지 오웰의 날카로운 우화를 통해 권력의 부패와 변질되는 이상향을 목격했습니다. 단순한 정치 풍자를 넘어 조직과 사회 구조가 작동하는 메커니즘을 비판적인 시각으로 바라보게 되었습니다.</p>
+                        <h3>02 / RESPONSIVE DESIGN</h3>
+                        <p>디바이스 환경의 제약 없이 유연하게 레이아웃이 가변하는 구조를 설계했습니다.</p>
                     </div>
                     <div class="project-card">
-                        <span class="book-num">BOOK 03</span>
-                        <h3>이방인 (L'Étranger)</h3>
-                        <p>알베르 카뮈가 던지는 인간 존재의 부조리와 현실에 대한 무관심. 사회가 정해놓은 위선적인 관습에 타협하지 않고, 온전히 자기 자신으로서 살아간다는 것의 무게를 깨달은 책입니다.</p>
+                        <h3>03 / INTERACTION UI</h3>
+                        <p>자바스크립트를 이용해 사용자의 스크롤 동선에 따라 인터랙티브하게 반응하는 컴포넌트입니다.</p>
                     </div>
                 </div>
             </section>
 
             <section id="contact">
                 <h2>Connect</h2>
-                <p>책과 개발, 혹은 새로운 인사이트에 대한 대화는 언제든 환영합니다.</p>
-                <a href="mailto:suhee@example.com" class="email-btn">Send Message</a>
+                <p>새로운 프로젝트와 기회는 언제나 환영합니다.</p>
+                <a href="mailto:suhee@example.com" class="email-btn">Get In Touch</a>
             </section>
         </main>
 
