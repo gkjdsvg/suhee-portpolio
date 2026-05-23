@@ -129,43 +129,49 @@
             width: 100px;
         }
 
-        /* Books 섹션 (기존 프로젝트 영역을 도서 아카이브로 변경) */
-        .project-grid {
+        /* --- 📚 Books 섹션 리뉴얼 (한 줄에 한 권씩 길게 소개) --- */
+        .book-list {
             display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
+            flex-direction: column;
+            gap: 80px; /* 책과 책 사이 간격 */
             width: 100%;
+            max-width: 1200px;
         }
-        .project-card {
-            flex: 1 1 350px;
-            background: #ffffff;
-            border: 1px solid #e5e5e5;
-            padding: 40px;
-            transition: all 0.4s ease;
+        .book-item {
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 60px;
         }
-        .project-card:hover {
-            border-color: #111111;
-            background-color: #fafafa;
+        .book-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
-        .project-card .book-num {
-            font-size: 0.85rem;
+        .book-meta {
+            font-size: 0.9rem;
             font-weight: 700;
             color: #999;
-            margin-bottom: 10px;
-            display: block;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
         }
-        .project-card h3 {
-            font-size: 1.4rem;
+        .book-item h3 {
+            font-size: calc(1.3rem + 0.5vw);
             font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
             color: #111;
+            margin-bottom: 25px;
         }
-        .project-card p {
-            color: #555;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            font-weight: 300;
+        .book-review {
+            color: #444;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            font-weight: 400;
+        }
+        /* 책 내용 중 강조하고 싶은 문장 스타일 */
+        .book-quote {
+            display: block;
+            margin-top: 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ccc;
+            color: #777;
+            font-style: italic;
         }
 
         /* Contact 섹션 */
@@ -210,7 +216,6 @@
             header { padding: 20px 5%; }
             nav { gap: 20px; }
             section { padding: 100px 5% 60px 5%; }
-            .project-card { padding: 30px; }
         }
     </style>
 </head>
@@ -240,30 +245,43 @@
                     <p><strong>CONTACT</strong> 010-1234-5678</p>
                     <p><strong>EMAIL</strong> suhee@example.com</p>
                     <p style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px;">
-                        단순히 코드를 짜거나 디자인을 하는 것을 넘어, 텍스트 속에 담긴 철학과 가치를 분석하는 것을 좋아합니다.<br>
-                        과거의 고전 문학들을 통해 현대 사회를 바라보는 시선을 기르고 있으며, 이러한 주체적인 사유 방식을 웹 기술을 활용해 가로 1920px 해상도의 모던 원페이지 아카이브로 시각화했습니다.
+                        단순히 기술을 습득하는 것을 넘어, 문학 속에 담긴 철학과 가치를 분석하는 것을 좋아합니다.<br>
+                        과거의 고전 문학들을 통해 현대 사회를 바라보는 주체적인 사유 방식을 기르고 있으며, 이를 웹 기술을 활용해 가로 1920px 해상도의 모던 원페이지 아카이브로 시각화했습니다.
                     </p>
                 </div>
             </section>
 
             <section id="books">
                 <h2>Books I Read</h2>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <span class="book-num">BOOK 01</span>
+                <div class="book-list">
+                    
+                    <div class="book-item">
+                        <div class="book-meta">01 / DYSTOPIA</div>
                         <h3>멋진 신세계 (Brave New World)</h3>
-                        <p>올더스 헉슬리가 그려낸 과학 기술의 고도화와 인간 존엄성 상실에 대한 디스토피아적 고찰. 시스템의 통제 속에서 인간의 진정한 자유와 행복이 무엇인지 깊게 고민하게 만든 작품입니다.</p>
+                        <p class="book-review">
+                            올더스 헉슬리가 그려낸 과학 기술의 고도화와 인간 존엄성 상실에 대한 고찰입니다. 모든 인간이 공장에서 대량 생산되고, 감정이 통제되는 완벽한 사회 속에서 역설적으로 '인간다운 불행'을 택하는 주인공을 통해 참된 자유의 가치를 배웠습니다. 시스템이 주는 안락함에 길들여지지 않는 주체적인 삶의 태도가 왜 중요한지 생각해보게 되었습니다.
+                            <span class="book-quote">"하지만 난 안락함을 원치 않습니다. 나는 신을 원하고, 시를 원하고, 참된 위험을 원하고, 자유를 원하고, 선을 원합니다. 나는 죄를 원합니다."</span>
+                        </p>
                     </div>
-                    <div class="project-card">
-                        <span class="book-num">BOOK 02</span>
+
+                    <div class="book-item">
+                        <div class="book-meta">02 / ALLEGORY</div>
                         <h3>동물농장 (Animal Farm)</h3>
-                        <p>조지 오웰의 날카로운 우화를 통해 권력의 부패와 변질되는 이상향을 목격했습니다. 단순한 정치 풍자를 넘어 조직과 사회 구조가 작동하는 메커니즘을 비판적인 시각으로 바라보게 되었습니다.</p>
+                        <p class="book-review">
+                            조지 오웰의 날카로운 우화를 통해 권력의 부패와 변질되는 이상향을 목격했습니다. 혁명을 통해 평등한 사회를 꿈꿨던 동물들이 결국 또 다른 독재 시스템을 만들어가는 과정은 소름 돋을 정도로 현실적이었습니다. 이 책을 통해 조직이나 사회 구조를 무비판적으로 수용하지 않고, 항상 깨어있는 시각으로 감시해야 한다는 교훈을 얻었습니다.
+                            <span class="book-quote">"모든 동물은 평등하다. 그러나 어떤 동물들은 다른 동물들보다 더욱 평등하다."</span>
+                        </p>
                     </div>
-                    <div class="project-card">
-                        <span class="book-num">BOOK 03</span>
+
+                    <div class="book-item">
+                        <div class="book-meta">03 / ABSURDITY</div>
                         <h3>이방인 (L'Étranger)</h3>
-                        <p>알베르 카뮈가 던지는 인간 존재의 부조리와 현실에 대한 무관심. 사회가 정해놓은 위선적인 관습에 타협하지 않고, 온전히 자기 자신으로서 살아간다는 것의 무게를 깨달은 책입니다.</p>
+                        <p class="book-review">
+                            알베르 카뮈가 던지는 인간 존재의 부조리와 현실에 대한 묵직한 메시지입니다. 세상의 위선적인 관습과 도덕적 잣대에 맞추어 거짓 눈물을 흘리기보다, 끝까지 진실만을 말하며 죽음을 맞이하는 뫼르소의 모습에서 강렬한 인상을 받았습니다. 타인의 시선에 휘둘리지 않고 내 삶의 주권을 온전히 지키는 법에 대해 깊이 고찰한 계기가 되었습니다.
+                            <span class="book-quote">"오늘 엄마가 죽었다. 아니, 어쩌면 어제였는지도 모른다."</span>
+                        </p>
                     </div>
+
                 </div>
             </section>
 
