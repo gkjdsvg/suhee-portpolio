@@ -31,35 +31,38 @@
             margin: 0 auto;
         }
 
-        /* [수정] 모든 섹션 기본 스타일:Flex 방향을 row(가로)로 기본 설정 --- */
+        /* [수정] 섹션 전체 간격 넓힘 및 정렬 조정 --- */
         section {
             width: 100%;
             min-height: 100vh;
-            padding: 140px 10%; /* 좌우 여백 살짝 조절 */
+            /* 👇 간격 넓힘: 상하 패딩 늘리고 좌우 여백을 %에서 고정 픽셀로 변경하여 더 넓은 여백 확보 */
+            padding: 180px 200px; 
             display: flex;
-            flex-direction: row; /* ⭐ 핵심: 가로 배치 */
-            justify-content: space-between; /* 양끝 정렬 */
-            align-items: center; /* 수직 중앙 */
+            flex-direction: row; 
+            justify-content: center; /* ⭐ 양끝 정렬 대신 가운데 정렬로 변경 ⭐ */
+            align-items: center; 
             border-bottom: 1px solid #f0f0f0;
+            gap: 120px; /* ⭐ 사진과 텍스트 사이 간격 ㅈㄴ 넓힘 ⭐ */
         }
 
         /* --- [추가] 각 섹션 내 글자 영역 스타일 --- */
         .content-text {
-            flex: 0 0 45%; /* 글자가 차지하는 너비 (45%) */
+            flex: 0 1 700px; /* ⭐ 글자 영역 너비를 고정하여 여유 확보 ⭐ */
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        /* --- [추가] 각 섹션 내 이미지 영역 스타일 --- */
+        /* --- [수정] 이미지 영역 스타일: 사이즈 줄임 ⭐ --- */
         .content-image {
-            flex: 0 0 50%; /* 이미지가 차지하는 너비 (50%) */
-            height: 80vh; /* 화면 높이의 80%를 차지하는 거대한 자리 */
-            background-color: #f5f5f5; /* ⭐ 이미지 없을 때 표시될 연회색 placeholder 배경 ⭐ */
+            flex: 0 0 450px; /* ⭐ 사진 가로 크기 ㅈㄴ 줄임 ⭐ */
+            height: 600px; /* ⭐ 사진 세로 크기도 줄임 ⭐ */
+            background-color: #f5f5f5; 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            border: 1px solid #eee; /* 모던한 테두리 */
+            border: 1px solid #eee; 
+            border-radius: 10px; /* 모던하게 모서리 살짝 깎음 */
         }
 
         /* --- 3. 모던 내비게이션 바 (기존 유지) --- */
@@ -102,14 +105,14 @@
             font-weight: 700;
         }
 
-        /* --- 4. 섹션별 스타일 디자인 (일부 수정) --- */
+        /* --- 4. 섹션별 스타일 디자인 (기존 유지) --- */
         
-        /* Home 섹션: 홈 대문 이미지를 배경으로 깔아주는 스타일로 변경 */
         #home {
             background-color: #111111;
             color: #ffffff;
             position: relative;
-            padding: 0; /* 배경 가득 채우기 위해 */
+            padding: 0; 
+            gap: 0; /* 홈은 예외 */
         }
         #home .content-text {
             position: absolute;
@@ -131,24 +134,23 @@
             font-weight: 300;
             color: #aaa;
         }
-        /* ⭐ Home 섹션 거대 배경 이미지 자리 */
         #home .home-bg-image {
             width: 100%;
             height: 100vh;
-            background-color: #222; /* 임시 배경 */
+            background-color: #222; 
             background-size: cover;
             background-position: center;
-            opacity: 0.5; /* 글자 보이도록 투명도 조절 */
+            opacity: 0.5; 
             position: absolute;
             top: 0;
             left: 0;
             z-index: 1;
         }
 
-        /* About 섹션: 수직 배치 유지 */
         #about {
             flex-direction: column; 
             align-items: flex-start;
+            padding: 180px 200px;
         }
         .about-content {
             max-width: 800px;
@@ -164,18 +166,16 @@
             width: 100px;
         }
 
-        /* --- 📚 핵심: 책 상세 섹션 이미지 배치 및 지그재그 연출 --- */
         .book-section {
             background-color: #ffffff;
         }
-        /* 홀수 번째 책 (1, 3): 글자 왼쪽, 이미지 오른쪽 */
         .book-section:nth-child(odd) {
             flex-direction: row;
         }
-        /* 짝수 번째 책 (2): 이미지 왼쪽, 글자 오른쪽 (지그재그) ⭐ */
         .book-section:nth-child(even) {
             flex-direction: row-reverse;
             background-color: #fafafa;
+            gap: 120px; /* 여기도 간격 넓힘 유지 */
         }
 
         .book-no {
@@ -201,7 +201,6 @@
             margin-left: 20px;
         }
         
-        /* 풀어쓰는 본문 영역 (기존 유지) */
         .book-content-box {
             font-size: 1.05rem;
             line-height: 2;
@@ -214,7 +213,6 @@
             color: #111;
         }
 
-        /* 인용구 상자 (기존 유지) */
         .book-blockquote {
             margin: 30px 0;
             padding: 30px;
@@ -229,10 +227,10 @@
             background-color: #e9e9e9;
         }
 
-        /* Contact 섹션: 수직 배치 유지 */
         #contact {
             flex-direction: column;
             align-items: flex-start;
+            padding: 180px 200px;
         }
         #contact p {
             font-size: 1.5rem;
@@ -254,7 +252,6 @@
             background-color: #444444;
         }
 
-        /* 푸터 (기존 유지) */
         footer {
             width: 100%;
             padding: 40px 10%;
@@ -264,13 +261,13 @@
             color: #999;
         }
 
-        /* 모바일 반응형: 화면 작아지면 수직 스택으로 변경 */
+        /* 모바일 반응형: 기존 유지 */
         @media (max-width: 1024px) {
-            section { flex-direction: column; padding: 120px 8% 80px 8%; }
+            section { flex-direction: column; padding: 120px 8% 80px 8%; gap: 40px; }
             .content-text, .content-image { flex: 0 0 100%; width: 100%; }
             .content-image { height: 50vh; margin-top: 40px; }
             #home .content-text { left: 8%; }
-            .book-section:nth-child(even) { flex-direction: column; }
+            .book-section:nth-child(even) { flex-direction: column; gap: 40px; }
             .book-title span { display: block; margin-left: 0; margin-top: 10px; }
         }
     </style>
@@ -315,7 +312,7 @@
             </section>
 
             <section id="book01" class="book-section">
-                <div class="content-textbook-wrapper">
+                <div class="content-text">
                     <div class="book-no">BOOK ARCHIVE 01</div>
                     <h3 class="book-title">멋진 신세계 <span>올더스 헉슬리 (Aldous Huxley)</span></h3>
                     
@@ -336,7 +333,7 @@
             </section>
 
             <section id="book02" class="book-section">
-                <div class="content-textbook-wrapper">
+                <div class="content-text">
                     <div class="book-no">BOOK ARCHIVE 02</div>
                     <h3 class="book-title">동물농장 <span>조지 오웰 (George Orwell)</span></h3>
                     
@@ -357,7 +354,7 @@
             </section>
 
             <section id="book03" class="book-section">
-                <div class="content-textbook-wrapper">
+                <div class="content-text">
                     <div class="book-no">BOOK ARCHIVE 03</div>
                     <h3 class="book-title">이방인 <span>알베르 카뮈 (Albert Camus)</span></h3>
                     
@@ -371,7 +368,7 @@
                         </div>
 
                         <h4 class="book-sub-title">[ 나의 사유 및 인문학적 고찰 ]</h4>
-                        <p>카뮈가 제시한 '부조리'는 현대인들에게 큰 울림을 줍니다. 사회는 끊임없이 우리에게 '정해진 틀에 맞는 감정'과 '평범한 역할'을 요구하며, 여기서 벗어난 사람들을 이방인 취급합니다. 뫼르소의 무관심은 냉혹함이 아니라, 타인의 시선과 위선에 맞춰 거짓 행동을 하지 않겠다는 날 것 그대로의 진실성임을 깨달았습니다. 세상이 정해놓은 잣대에 무조건 맞추기보다, 내 삶의 본질과 주권을 스스로 정의하는 단단한 자아를 확립하게 해 준 작품입니다.</p>
+                        <p>카뮈가 제시한 '부조리'는 현대인들에게 큰 울림을 줍니다. 사회는 끊임없이 우리에게 '정해진 틀에 맞는 감정'과 '평범할 역할'을 요구하며, 여기서 벗어난 사람들을 이방인 취급합니다. 뫼르소의 무관심은 냉혹함이 아니라, 타인의 시선과 위선에 맞춰 거짓 행동을 하지 않겠다는 날 것 그대로의 진실성임을 깨달았습니다. 세상이 정해놓은 잣대에 무조건 맞추기보다, 내 삶의 본질과 주권을 스스로 정의하는 단단한 자아를 확립하게 해 준 작품입니다.</p>
                     </div>
                 </div>
                 <div class="content-image"></div>
@@ -398,18 +395,4 @@
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= sectionTop - 250) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                if (window.pageY
