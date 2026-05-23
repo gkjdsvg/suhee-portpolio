@@ -395,4 +395,18 @@
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (window.pageY
+                if (window.pageYOffset >= sectionTop - 250) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
