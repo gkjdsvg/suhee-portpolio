@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Portfolio - Real One Page Archive</title>
     <style>
-        /* --- 1. 초기화 및 폰트 설정 --- */
+        /* --- 1. 초기화 및 폰트 설정 (기존 유지) --- */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Noto+Sans+KR:wght@300;400;700&display=swap');
 
         * {
@@ -24,25 +24,45 @@
             letter-spacing: -0.5px;
         }
 
-        /* --- 2. 1920px 컨테이너 --- */
+        /* --- 2. 1920px 컨테이너 (기존 유지) --- */
         .container {
             width: 100%;
             max-width: 1920px;
             margin: 0 auto;
         }
 
-        /* 모든 섹션을 화면 하나를 가득 채우는 거대한 크기로 설정 */
+        /* --- [수정] 섹션 기본 스타일: Flex 방향을 가로(row)로 변경하여 이미지 공간 확보 --- */
         section {
             width: 100%;
             min-height: 100vh;
-            padding: 160px 15% 120px 15%; /* 좌우 여백을 넓게 주어 본문이 가운데로 정렬됨 */
+            padding: 140px 10%; /* 좌우 여백 살짝 조절 */
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex-direction: row; /* ⭐ 핵심: 가로 배치 */
+            justify-content: space-between; /* 양끝 정렬 */
+            align-items: center; /* 수직 중앙 */
             border-bottom: 1px solid #f0f0f0;
         }
 
-        /* --- 3. 모던 내비게이션 바 --- */
+        /* --- [추가] 글자 영역 스타일 --- */
+        .content-text {
+            flex: 0 0 45%; /* 글자가 차지하는 너비 (45%) */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* --- [추가] 이미지 영역 스타일 --- */
+        .content-image {
+            flex: 0 0 50%; /* 이미지가 차지하는 너비 (50%) */
+            height: 80vh; /* 화면 높이의 80% */
+            background-color: #f5f5f5; /* 이미지 없을 때 보일 임시 배경색 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 1px solid #eee; /* 모던한 테두리 */
+        }
+
+        /* --- 3. 모던 내비게이션 바 (기존 유지) --- */
         header {
             width: 100%;
             max-width: 1920px;
@@ -82,11 +102,22 @@
             font-weight: 700;
         }
 
-        /* --- 4. 섹션별 스타일 디자인 --- */
-        /* Home 섹션 */
+        /* --- 4. 섹션별 스타일 디자인 (기존 유지 및 일부 수정) --- */
+        
+        /* Home 섹션: 이미지를 배경으로 까는 스타일로 변경 */
         #home {
             background-color: #111111;
             color: #ffffff;
+            padding: 0; /* 배경 꽉 차게 패딩 제거 */
+            position: relative;
+        }
+        #home .content-text {
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            width: auto;
         }
         #home h1 {
             font-size: calc(2.5rem + 2vw);
@@ -100,13 +131,31 @@
             font-weight: 300;
             color: #aaa;
         }
+        /* ⭐ Home 섹션 전용 거대 배경 이미지 자리 */
+        #home .home-bg-image {
+            width: 100%;
+            height: 100vh;
+            background-image: url('01_home_bg.jpg'); /* 이미지 파일명으로 변경하세요 */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5; /* 글자가 잘 보이도록 배경 투명도 조절 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
 
-        /* About 섹션 */
+        /* About 섹션: 기존 유지 */
+        #about {
+            flex-direction: column; /* About은 기존처럼 수직 배치 */
+            align-items: flex-start;
+        }
         .about-content {
             max-width: 800px;
             font-size: 1.1rem;
             line-height: 2;
             color: #444;
+            margin-top: 40px;
         }
         .about-content strong {
             color: #111;
@@ -115,19 +164,20 @@
             width: 100px;
         }
 
-        /* --- 📚 핵심: 가로 카드 레이아웃 완전 삭제, 무조건 통짜 일렬 섹션 --- */
+        /* --- 📚 핵심: 책 상세 섹션 이미지 배치 및 지그재그 연출 --- */
         .book-section {
             background-color: #ffffff;
         }
-        /* 홀수/짝수 섹션 배경색을 다르게 주어 스크롤 내릴 때 스위칭되는 느낌 연출 */
+        /* 홀수 번째 책 (1, 3): 글자 왼쪽, 이미지 오른쪽 */
+        .book-section:nth-child(odd) {
+            flex-direction: row;
+        }
+        /* 짝수 번째 책 (2): 이미지 왼쪽, 글자 오른쪽 (지그재그) ⭐ */
         .book-section:nth-child(even) {
+            flex-direction: row-reverse;
             background-color: #fafafa;
         }
 
-        .book-wrapper {
-            max-width: 1200px;
-            width: 100%;
-        }
         .book-no {
             font-size: 0.9rem;
             font-weight: 700;
@@ -136,10 +186,10 @@
             margin-bottom: 15px;
         }
         .book-title {
-            font-size: calc(2rem + 0.8vw);
+            font-size: calc(1.8rem + 0.6vw);
             font-weight: 700;
             color: #111;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             line-height: 1.3;
             border-bottom: 2px solid #111;
             padding-bottom: 20px;
@@ -151,35 +201,44 @@
             margin-left: 20px;
         }
         
-        /* 풀어쓰는 본문 영역 */
+        /* 풀어쓰는 본문 영역 (기존 유지) */
         .book-content-box {
-            font-size: 1.15rem;
-            line-height: 2.1;
+            font-size: 1.05rem;
+            line-height: 2;
             color: #333;
         }
         .book-sub-title {
-            font-size: 1.30rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin: 50px 0 20px 0;
+            margin: 30px 0 15px 0;
             color: #111;
         }
 
-        /* 인용구 상자 */
+        /* 인용구 상자 (기존 유지) */
         .book-blockquote {
-            margin: 40px 0;
-            padding: 35px;
+            margin: 30px 0;
+            padding: 30px;
             background-color: #f1f1f1;
             border-left: 5px solid #111;
             font-style: italic;
             color: #333;
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.8;
         }
         .book-section:nth-child(even) .book-blockquote {
             background-color: #e9e9e9;
         }
 
-        /* Contact 섹션 */
+        /* ⭐ 각 책 섹션 이미지 지정 */
+        #book01 .content-image { background-image: url('book_01_brave.jpg'); } /* 멋진신세계 이미지 */
+        #book02 .content-image { background-image: url('book_02_animal.jpg'); } /* 동물농장 이미지 */
+        #book03 .content-image { background-image: url('book_03_stranger.jpg'); } /* 이방인 이미지 */
+
+        /* Contact 섹션: 기존 유지 */
+        #contact {
+            flex-direction: column;
+            align-items: flex-start;
+        }
         #contact p {
             font-size: 1.5rem;
             font-weight: 300;
@@ -200,7 +259,7 @@
             background-color: #444444;
         }
 
-        /* 푸터 */
+        /* 푸터 (기존 유지) */
         footer {
             width: 100%;
             padding: 40px 10%;
@@ -210,9 +269,13 @@
             color: #999;
         }
 
-        /* 모바일 반응형 */
+        /* 모바일 반응형: 화면 작아지면 수직 스택으로 변경 */
         @media (max-width: 1024px) {
-            section { padding: 120px 8% 80px 8%; }
+            section { flex-direction: column; padding: 120px 8% 80px 8%; }
+            .content-text, .content-image { flex: 0 0 100%; width: 100%; }
+            .content-image { height: 50vh; margin-top: 40px; }
+            #home .content-text { left: 8%; }
+            .book-section:nth-child(even) { flex-direction: column; }
             .book-title span { display: block; margin-left: 0; margin-top: 10px; }
         }
     </style>
@@ -234,27 +297,30 @@
 
         <main>
             <section id="home">
-                <h1>THINKING<br>& RECORDING.</h1>
-                <p>텍스트를 통해 세상을 읽고 일렬로 기록해 나가는 홍길동의 아카이브 사이트입니다.</p>
+                <div class="content-text">
+                    <h1>THINKING<br>& RECORDING.</h1>
+                    <p>텍스트를 통해 세상을 읽고 일렬로 기록해 나가는 홍길동의 아카이브 사이트입니다.</p>
+                </div>
+                <div class="home-bg-image"></div>
             </section>
 
             <section id="about">
-                <div style="max-width:1200px;">
-                    <h2 style="font-size: 2rem; font-weight:700; margin-bottom:40px;">ABOUT ME</h2>
+                <div style="max-width:1200px; width: 100%;">
+                    <h2 style="font-size: 2rem; font-weight:700; margin-bottom:40px; text-transform: uppercase;">ABOUT ME</h2>
                     <div class="about-content">
                         <p><strong>NAME</strong> 홍길동</p>
                         <p><strong>CONTACT</strong> 010-1234-5678</p>
                         <p><strong>EMAIL</strong> suhee@example.com</p>
                         <p style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px;">
                             단순히 요약된 카드를 나열하는 방식을 거부하고, 원페이지 양식 안에서 깊은 사유의 결과물을 수직으로 길게 풀어내는 방식을 선호합니다.<br>
-                            가로 1920px 화면을 넓게 쓰면서, 하나의 섹션이 하나의 책을 온전히 담당하여 스크롤 동선에 따라 정독할 수 있도록 레이아웃을 완전히 일렬 구조로 설계했습니다.
+                            가로 1920px 화면을 넓게 쓰면서, 하나의 섹션이 하나의 책을 온전히 담당하여 스크롤 동선에 따라 정독할 수 있도록 레이아웃을 완전 일렬 구조로 설계했습니다.
                         </p>
                     </div>
                 </div>
             </section>
 
             <section id="book01" class="book-section">
-                <div class="book-wrapper">
+                <div class="content-textbook-wrapper">
                     <div class="book-no">BOOK ARCHIVE 01</div>
                     <h3 class="book-title">멋진 신세계 <span>올더스 헉슬리 (Aldous Huxley)</span></h3>
                     
@@ -271,10 +337,11 @@
                         <p>헉슬리가 경고한 미래는 오늘날 고도화된 알고리즘과 물질만능주의에 중독된 현대 사회와 소름 돋을 정도로 닮아 있습니다. 고통을 회피하기 위해 약물과 오락에 의존하는 세계 정부의 시민들을 보며, 진정한 인간다움이란 단순히 고통이 없는 상태가 아니라 슬픔과 시련 속에서도 스스로 사유하고 선택할 수 있는 '자유 의지'에 있음을 깨달았습니다. 편리함이라는 덫에 갇혀 인간의 고유성을 잃지 않아야겠다는 다짐을 하게 만든 작품입니다.</p>
                     </div>
                 </div>
+                <div class="content-image"></div>
             </section>
 
             <section id="book02" class="book-section">
-                <div class="book-wrapper">
+                <div class="content-textbook-wrapper">
                     <div class="book-no">BOOK ARCHIVE 02</div>
                     <h3 class="book-title">동물농장 <span>조지 오웰 (George Orwell)</span></h3>
                     
@@ -291,61 +358,14 @@
                         <p>조지 오웰의 날카로운 우화는 비단 특정 정치 체제뿐만 아니라, 우리가 속한 모든 조직과 사회 시스템에 적용될 수 있는 경고장입니다. 절대 권력은 반드시 부패한다는 명제를 목격하며, 시스템의 구성원들이 눈을 감고 귀를 닫았을 때 지배 계층이 어떻게 언어를 조작하고 대중을 선동하는지 깊이 있게 분석할 수 있었습니다. 맹목적인 복종을 경계하고 항상 비판적인 시각으로 세상을 바라보는 지적 감시자가 되어야 함을 통감했습니다.</p>
                     </div>
                 </div>
+                <div class="content-image"></div>
             </section>
 
             <section id="book03" class="book-section">
-                <div class="book-wrapper">
+                <div class="content-textbook-wrapper">
                     <div class="book-no">BOOK ARCHIVE 03</div>
                     <h3 class="book-title">이방인 <span>알베르 카뮈 (Albert Camus)</span></h3>
                     
                     <div class="book-content-box">
                         <h4 class="book-sub-title">[ 작품 줄거리 및 핵심 요약 ]</h4>
-                        <p>주인공 뫼르소는 어머니의 장례식에서 눈물을 흘리지 않고, 이튿날 여자친구와 해수욕을 즐기는 등 사회적 관습과 감정의 규칙에 무관심한 인물입니다. 그는 알제리 해변에서 내리쬐는 '태양빛 때문'에 우발적으로 아랍인을 살해하게 됩니다. 재판 과정에서 법정은 살인 사건 자체보다 그가 어머니의 죽음 앞에 슬퍼하지 않았다는 '도덕적 결점'을 문제 삼아 그에게 사형을 선고합니다. 뫼르소는 끝까지 세상의 위선과 타협하지 않고 자신의 진실을 지키며 죽음을 받아들입니다.</p>
-                        
-                        <div class="book-blockquote">
-                            "오늘 엄마가 죽었다. 아니, 어쩌면 어제였는지도 모른다." <br>
-                            - 관습적인 슬픔의 강요를 거부하는 주인공 뫼르소의 시선을 대변하는 첫 문장
-                        </div>
-
-                        <h4 class="book-sub-title">[ 나의 사유 및 인문학적 고찰 ]</h4>
-                        <p>카뮈가 제시한 '부조리'는 현대인들에게 큰 울림을 줍니다. 사회는 끊임없이 우리에게 '정해진 틀에 맞는 감정'과 '평범한 역할'을 요구하며, 여기서 벗어난 사람들을 이방인 취급합니다. 뫼르소의 무관심은 냉혹함이 아니라, 타인의 시선과 위선에 맞춰 거짓 행동을 하지 않겠다는 날 것 그대로의 진실성임을 깨달았습니다. 세상이 정해놓은 잣대에 무조건 맞추기보다, 내 삶의 본질과 주권을 스스로 정의하는 단단한 자아를 확립하게 해 준 작품입니다.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact">
-                <h2 style="font-size: 2rem; font-weight:700; margin-bottom:40px;">Connect</h2>
-                <p>깊이 있는 사유와 텍스트 분석에 관한 대화는 언제든 환영합니다.</p>
-                <a href="mailto:suhee@example.com" class="email-btn">Send Message</a>
-            </section>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 HONG GILDONG. ALL RIGHTS RESERVED.</p>
-        </footer>
-    </div>
-
-    <script>
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= sectionTop - 300) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>3
+                        <p>주인공 뫼르소는 어머니의 장례식에서 눈물을 흘리지 않고, 이튿날 여자친구와 해수욕을 즐기는 등 사회적 관습과 감정의 규칙에 무관심한 인물입니다. 그는 알제리 해변에서 내리쬐는 '태양빛 때문'에 우발적으로 아랍인을 살해하게 됩니다. 재판 과정에서
